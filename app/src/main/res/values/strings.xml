@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MJSlick</string>
+
+    <string name="indicator">indicator</string>
+
+    //onboarding
+    <string name="onBoardingText1">Design an amazing outfit for \n Professional events </string>
+    <string name="onBoardingText2">select from different deign styles \n or \n request your own personal design</string>
+    <string name="onBoardingText3">Get your job delivered faster \n and efficient</string>
+
+    <string name="onBoardingTitle1">Professional design styles</string>
+    <string name="onBoardingTitle2">quality and Amazing List</string>
+    <string name="onBoardingTitle3">Reliability and efficiency</string>
+
+    <string name="next_onboarding_text">NEXT</string>
+    <string name="start_onboarding_text">START</string>
+</resources>
