@@ -50,7 +50,9 @@ class MainActivity : AppCompatActivity() {
             Log.d("Item destination", dest)
 
             when (destination.id) {
-                R.id.navigation_onBoarding -> {
+                R.id.navigation_onBoarding,
+                R.id.navigation_logIn,
+                R.id.navigation_register -> {
                     hideCustomToolBar()
                     hideBottomNav()
                     hideFloatingButton()

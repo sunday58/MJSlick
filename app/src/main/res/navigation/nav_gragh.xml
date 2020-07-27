@@ -29,4 +29,16 @@
         android:label=""
         tools:layout="@layout/onboarding_fragment"/>
 
+    <fragment
+        android:id="@+id/navigation_logIn"
+        android:name="com.mjslick.ui.auth.logIn.LogInFragment"
+        android:label=""
+        tools:layout="@layout/log_in_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="com.mjslick.ui.auth.register.RegisterFragment"
+        android:label=""
+        tools:layout="@layout/register_fragment"/>
+
 </navigation>
