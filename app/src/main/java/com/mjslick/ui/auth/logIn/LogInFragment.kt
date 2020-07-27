@@ -5,18 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mjslick.R
 import kotlinx.android.synthetic.main.log_in_fragment.*
+import kotlinx.android.synthetic.main.log_in_fragment.view.*
 
 class LogInFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LogInFragment()
-    }
-
     private lateinit var viewModel: LogInViewModel
+    private lateinit var textRegister: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +24,12 @@ class LogInFragment : Fragment() {
         val root = inflater.inflate(R.layout.log_in_fragment, container, false)
 
 
-        text_register.setOnClickListener {
+        textRegister = root.findViewById(R.id.text_register)
+        textRegister.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_register)
+        }
+        root.logIn.setOnClickListener {
+            Navigation.findNavController(root).navigate(R.id.navigation_female)
         }
         return root
     }

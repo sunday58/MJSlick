@@ -14,4 +14,6 @@
 
     <string name="next_onboarding_text">NEXT</string>
     <string name="start_onboarding_text">START</string>
+    <string name="company_logo">company logo</string>
+    <string name="ladies_wears">Ladies Wears</string>
 </resources>

@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/white"
             android:layout_marginTop="12dp"
             android:layout_gravity="end"
