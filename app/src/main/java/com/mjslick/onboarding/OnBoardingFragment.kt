@@ -51,7 +51,7 @@ class OnBoardingFragment : Fragment() {
         mOnBoardingViewModel.mUserStatesMutableLiveData.observe(viewLifecycleOwner,
             Observer { userStates: OnBoardingViewModel.UserStates? ->
             when (userStates) {
-                OnBoardingViewModel.UserStates.SEEN_ON_BOARDING_SCREEN -> mNavController.navigate(R.id.navigation_female)
+                OnBoardingViewModel.UserStates.SEEN_ON_BOARDING_SCREEN -> mNavController.navigate(R.id.navigation_logIn)
                 OnBoardingViewModel.UserStates.NOT_SEEN_ON_BOARDING_SCREEN -> notSeenOnBoarding()
             }
         }
@@ -95,7 +95,7 @@ class OnBoardingFragment : Fragment() {
                 if (mOnBoardingViewPager.currentItem < 2)
                     mOnBoardingViewPager.setCurrentItem(mOnBoardingViewPager.currentItem + 1, true)
                 else {
-                    mNavController.navigate(R.id.navigation_female)
+                    mNavController.navigate(R.id.navigation_logIn)
                     mOnBoardingViewModel.seenOnBoardingScreen(true)
                     mStorage.setSeenOnBoardingScreen(Constants.ON_BOARDING_KEY, true)
                 }
