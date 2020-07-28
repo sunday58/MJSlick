@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.female.FemaleFragment">
 
-   <TextView
-       android:id="@+id/ladies_wears"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="@string/ladies_wears"
-       android:fontFamily="@font/sura"
-       android:textStyle="bold"
-       android:layout_marginTop="32dp"
-       android:layout_marginStart="32dp"
-       android:textColor="@color/colorPrimaryDark"
-       android:textSize="18sp"
-       tools:ignore="RelativeOverlap" />
+    <TextView
+        android:id="@+id/ladies_wears"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/sura"
+        android:text="@string/ladies_wears"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/splash_logo"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/company_logo"/>
 
     <EditText
-        android:id="@+id/search_placeHolder"
+        android:id="@+id/female_search_placeHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_shape"
-        android:drawableStart="@drawable/ic_search"
-        android:hint="Search"
-        android:clickable="false"
-        android:focusable="false"
         android:layout_below="@id/ladies_wears"
-        android:padding="16dp"
-        android:drawablePadding="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginStart="16dp"
-        android:drawableTint="@color/gray"/>
+        android:background="@drawable/search_shape"
+        android:clickable="false"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/gray"
+        android:focusable="false"
+        android:hint="Search"
+        android:padding="12dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/female_wear_recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_placeHolder"
+        android:layout_below="@id/female_search_placeHolder"
         android:layout_centerInParent="true"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
@@ -62,14 +62,14 @@
         android:id="@+id/add_female_wear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorPrimaryDark"
         app:elevation="8dp"
-        app:tint="@color/white"/>
+        app:tint="@color/white" />
 
 
 </RelativeLayout>

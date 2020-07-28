@@ -1,13 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.male.MaleFragment">
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/frame_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:background="@drawable/male_wear_frame">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/male_wears"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/male_wears"
+                android:fontFamily="@font/sura"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/splash_logo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/company_logo"/>
+
+            <EditText
+                android:id="@+id/male_search_placeHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_shape"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="Search"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_below="@id/logo"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginStart="32dp"
+                android:drawableTint="@color/gray"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/male_search_placeHolder"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
+                android:paddingStart="24dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="All"
+                    app:chipCornerRadius="45dp"
+                    app:chipEndPadding="12dp"
+                    app:chipStartPadding="12dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/trousers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Trousers"
+                    app:chipCornerRadius="45dp"
+                    app:chipEndPadding="8dp"
+                    app:chipStartPadding="8dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/shirts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Shirts"
+                    app:chipCornerRadius="45dp"
+                    app:chipEndPadding="8dp"
+                    app:chipStartPadding="8dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/female_wear_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Male" />
+        android:layout_below="@id/frame_header"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/male_wear_list_item" />
 
-</FrameLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_male_wear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:elevation="8dp"
+        app:tint="@color/white"/>
+</RelativeLayout>

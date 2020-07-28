@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+            android:id="@+id/meal_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:siShape="@drawable/image_shape"
+            app:siSquare="true"
+            android:src="@drawable/female_wear"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/female_wear_detailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female Native Wear"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="This is the best fashion design so far, amazing and cool design you will love"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sanchez"/>
+
+                <RatingBar
+                    android:id="@+id/profile_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="4"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:theme="@style/RatingBar"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="12dp"/>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/female_wear_detailPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginEnd="4dp"
+                        android:text="TOP: "/>
+
+                    <TextView
+                        android:id="@+id/detail_top_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#3000"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/sanchez"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginEnd="4dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="TROUSER: "/>
+
+                    <TextView
+                        android:id="@+id/detail_trouser_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#3000"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/sanchez"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginEnd="4dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="COMPLETE: "/>
+
+                    <TextView
+                        android:id="@+id/detail_complete_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#5000"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/sanchez"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price is Negotiable"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/sanchez"/>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONTACTS"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/detail_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="+234645454664"
+                    android:drawableStart="@drawable/ic_call"
+                    android:drawableTint="@color/white"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/belgrano"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="mjslick@gmail.com"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawableTint="@color/white"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/belgrano"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/detail_twitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_icons8_twitter"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:paddingBottom="16dp"
+                        android:layout_gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/detail_facebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_facebook"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:paddingBottom="16dp"
+                        android:layout_gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/detail_linkedin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_linkedin"
+                        android:layout_marginTop="12dp"
+                        android:paddingBottom="16dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
