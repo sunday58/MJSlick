@@ -43,8 +43,14 @@
 
     <fragment
         android:id="@+id/navigation_addFemaleCloth"
-        android:name="com.mjslick.ui.auth.register.RegisterFragment"
+        android:name="com.mjslick.ui.female.AddFemaleClothsFragment"
         android:label=""
-        tools:layout="@layout/register_fragment"/>
+        tools:layout="@layout/fragment_add_female_cloths"/>
+
+    <fragment
+        android:id="@+id/navigation_addMaleCloth"
+        android:name="com.mjslick.ui.male.AddMaleClothFragment"
+        android:label=""
+        tools:layout="@layout/fragment_add_male_cloth"/>
 
 </navigation>
