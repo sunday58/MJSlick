@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     //declarations
     private lateinit var navController: NavController
+    private lateinit var navView: BottomNavigationView
     private lateinit var toolBar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolBar)
 
         //views
-        val navView: BottomNavigationView = findViewById(R.id.customBottomBar)
+         navView = findViewById(R.id.customBottomBar)
         navView.inflateMenu(R.menu.menu)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(setOf(
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun floatingButton(){
         female_cloths.setOnClickListener {
-            Navigation.findNavController(customBottomBar).navigate(R.id.navigation_female)
+            navController.navigate(R.id.navigation_female)
         }
     }
 
