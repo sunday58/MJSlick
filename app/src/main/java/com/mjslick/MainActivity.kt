@@ -60,7 +60,8 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_onBoarding,
                 R.id.navigation_logIn,
-                R.id.navigation_register -> {
+                R.id.navigation_register,
+                R.id.navigation_addFemaleCloth -> {
                     hideCustomToolBar()
                     hideBottomNav()
                     hideFloatingButton()

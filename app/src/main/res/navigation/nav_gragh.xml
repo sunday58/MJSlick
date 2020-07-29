@@ -41,4 +41,10 @@
         android:label=""
         tools:layout="@layout/register_fragment"/>
 
+    <fragment
+        android:id="@+id/navigation_addFemaleCloth"
+        android:name="com.mjslick.ui.auth.register.RegisterFragment"
+        android:label=""
+        tools:layout="@layout/register_fragment"/>
+
 </navigation>

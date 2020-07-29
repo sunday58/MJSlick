@@ -22,4 +22,9 @@
     <string name="about_me"><u>ABOUT ME</u></string>
     <string name="about_me_detail">My name is Mary Joshua, the founder of MJSlick fashion design. Fashion have always been my passion and i decided to extend it to a carrier. I design and sew any type of male/female wears ranging from ankara, native etc.</string>
     <string name="contact_me"><u>CONTACT ME</u></string>
+
+    <string-array name="cloths">
+        <item>Shirt</item>
+        <item>Trouser</item>
+    </string-array>
 </resources>
