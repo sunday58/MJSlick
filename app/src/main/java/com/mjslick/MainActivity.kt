@@ -39,7 +39,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         setDestinationListener()
+        floatingButton()
 
+    }
+
+    private fun floatingButton(){
+        female_cloths.setOnClickListener {
+            Navigation.findNavController(customBottomBar).navigate(R.id.navigation_female)
+        }
     }
 
     private fun setDestinationListener() {

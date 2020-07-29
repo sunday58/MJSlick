@@ -88,6 +88,31 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:elevation="8dp"
+                android:hint="Phone No."
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_gravity="center"
+                    android:inputType="phone"
+                    android:drawableStart="@drawable/ic_call"
+                    android:drawableTint="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:drawablePadding="12dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:elevation="8dp"
                 android:hint="Twitter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -97,7 +122,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:layout_gravity="center"
-                    android:inputType="textEmailAddress|textNoSuggestions"
+                    android:inputType="textWebEmailAddress"
                     android:drawableStart="@drawable/ic_icons8_twitter"
                     android:textCursorDrawable="@null"
                     android:drawablePadding="12dp"/>
@@ -121,7 +146,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:layout_gravity="center"
-                    android:inputType="textEmailAddress|textNoSuggestions"
+                    android:inputType="textWebEmailAddress"
                     android:drawableStart="@drawable/ic_facebook"
                     android:textCursorDrawable="@null"
                     android:drawablePadding="12dp"/>
@@ -145,7 +170,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:layout_gravity="center"
-                    android:inputType="textEmailAddress|textNoSuggestions"
+                    android:inputType="textWebEmailAddress"
                     android:drawableStart="@drawable/ic_linkedin"
                     android:textCursorDrawable="@null"
                     android:drawablePadding="12dp"/>
