@@ -64,6 +64,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.siyamed:android-shape-imageview:0.9.3'
 
+    //select and display multiple image
+    implementation 'com.github.WrathChaos:MediaPickerLib:0.2.0'
+    implementation 'com.github.TeleClinic:SmartImageView:1.1.0'
+
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     kapt 'com.github.bumptech.glide:compiler:4.8.0'

@@ -18,7 +18,10 @@ class AddFemaleClothsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_female_cloths, container, false)
+        val root = inflater.inflate(R.layout.fragment_add_female_cloths, container, false)
+
+
+        return root
     }
 
 }
