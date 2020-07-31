@@ -86,11 +86,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (navController.currentDestination!!.id == R.id.navigation_female ||
-            navController.currentDestination!!.id == R.id.navigation_logIn)
+            navController.currentDestination!!.id == R.id.navigation_logIn) {
             showDialog()
+        }
         else if (navController.currentDestination!!.id == R.id.navigation_profile ||
-            navController.currentDestination!!.id == R.id.navigation_male)
+            navController.currentDestination!!.id == R.id.navigation_male) {
             navController.navigate(R.id.navigation_female)
+        }
         else
             super.onBackPressed()
     }

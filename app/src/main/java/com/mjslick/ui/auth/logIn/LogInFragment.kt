@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mjslick.R
@@ -23,13 +24,14 @@ class LogInFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.log_in_fragment, container, false)
 
-
         textRegister = root.findViewById(R.id.text_register)
         textRegister.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_register)
         }
         root.logIn.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_female)
+            ((activity as AppCompatActivity).overridePendingTransition(R.anim.grow_from_middle,
+                R.anim.shrink_to_middle))
         }
         return root
     }
