@@ -10,7 +10,7 @@ import com.mjslick.utility.Constants
 import java.util.*
 
 
-class FirebaseSource {
+ class FirebaseSource {
 
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
@@ -19,7 +19,6 @@ class FirebaseSource {
         FirebaseFirestore.getInstance()
     }
 
-
     fun register(email: String, password: String, user: User){
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener{task ->
@@ -27,10 +26,12 @@ class FirebaseSource {
                 val isNewUser = task.result?.additionalUserInfo?.isNewUser
                     if (isNewUser!!){
                         initCurrentUserFirstTime(user)
+                    }else {
+                        message(task.exception!!.localizedMessage!!)
                     }
 
                 }else {
-                   task.exception
+                   message(task.exception!!.localizedMessage!!)
                 }
             }
     }
@@ -72,4 +73,6 @@ class FirebaseSource {
     fun logout() = firebaseAuth.signOut()
 
     fun currentUser() = firebaseAuth.currentUser
+
+    fun message(toastMessage: String) = toastMessage
     }

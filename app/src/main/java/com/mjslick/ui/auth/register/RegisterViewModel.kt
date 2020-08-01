@@ -2,16 +2,19 @@ package com.mjslick.ui.auth.register
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.mjslick.database.FirebaseSource
 import com.mjslick.database.Repository
 import com.mjslick.model.User
 
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
-    private lateinit var repository: Repository
+    private var repository: Repository
+    private var firebaseSource: FirebaseSource = FirebaseSource()
+
 
     init {
-        repository.currentUser()
+        repository = Repository(firebaseSource)
     }
 
         fun register(email: String, password: String, user: User) {
@@ -21,4 +24,5 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         fun currentUser() {
             repository.currentUser()
         }
+    fun message(toastMessage: String) = repository.message(toastMessage)
 }

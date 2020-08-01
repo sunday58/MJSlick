@@ -2,39 +2,30 @@ package com.mjslick.ui.female
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.signature.MediaStoreSignature
 import com.bumptech.glide.signature.ObjectKey
-import com.coursion.freakycoder.mediapicker.galleries.Gallery
-import com.github.siyamed.shapeimageview.ShapeImageView
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
 import com.mjslick.R
 import com.mjslick.utility.Constants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
 import com.mjslick.utility.Constants.OPEN_MEDIA_PICKER
-import kotlinx.android.synthetic.main.fragment_add_female_cloths.*
 import kotlinx.android.synthetic.main.fragment_add_female_cloths.view.*
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileNotFoundException
 
 class AddFemaleClothsFragment : Fragment() {
 
