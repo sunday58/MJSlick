@@ -30,8 +30,6 @@ class LogInFragment : Fragment() {
         }
         root.logIn.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_female)
-            ((activity as AppCompatActivity).overridePendingTransition(R.anim.grow_from_middle,
-                R.anim.shrink_to_middle))
         }
         return root
     }

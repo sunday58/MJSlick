@@ -66,7 +66,6 @@ dependencies {
 
     //select and display multiple image
     implementation 'com.github.WrathChaos:MediaPickerLib:0.2.0'
-    implementation 'com.github.TeleClinic:SmartImageView:1.1.0'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'

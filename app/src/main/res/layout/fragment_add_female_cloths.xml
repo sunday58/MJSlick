@@ -160,15 +160,60 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-   <com.teleclinic.bulent.smartimageview.SmartImageViewLayout
-       android:layout_width="match_parent"
-       android:layout_height="100dp"
-       android:layout_marginTop="12dp"
-       android:layout_marginStart="32dp"
-       android:layout_marginEnd="32dp"
-       android:layout_marginBottom="8dp"
-       android:layout_gravity="center"
-       app:shape="SQUARE"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="32dp"
+            android:gravity="center"
+            android:layout_marginEnd="32dp">
+
+            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                android:id="@+id/shirtImage1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                app:siShape="@drawable/shirt_image_shape"
+                app:siSquare="true"
+                android:scaleType="centerCrop"/>
+
+            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                android:id="@+id/shirtImage2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:siShape="@drawable/shirt_image_shape"
+                app:siSquare="true"
+                android:layout_toEndOf="@id/shirtImage1"
+                android:visibility="gone"
+                android:layout_marginStart="16dp"
+                android:scaleType="centerCrop"/>
+
+            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                android:id="@+id/shirtImage3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:siShape="@drawable/shirt_image_shape"
+                app:siSquare="true"
+                android:layout_below="@id/shirtImage2"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                android:scaleType="centerCrop"/>
+
+            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                android:id="@+id/shirtImage4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:siShape="@drawable/shirt_image_shape"
+                app:siSquare="true"
+                android:layout_toEndOf="@id/shirtImage3"
+                android:layout_below="@id/shirtImage2"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                android:scaleType="centerCrop"/>
+
+        </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveFemaleCloths"
@@ -190,7 +235,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/selectPicture"
+        android:id="@+id/femaleSelectPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
