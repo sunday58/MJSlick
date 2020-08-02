@@ -13,4 +13,6 @@ class Repository(private val firebaseSource: FirebaseSource) {
 
     fun logout() = firebaseSource.logout()
 
+    fun resetPassword(email: String) = firebaseSource.resetPassword(email)
+
 }

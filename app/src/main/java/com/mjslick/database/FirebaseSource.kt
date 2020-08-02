@@ -93,4 +93,15 @@ import java.util.*
 
     fun currentUser() = firebaseAuth.currentUser
 
+     fun resetPassword(email: String) {
+         firebaseAuth.sendPasswordResetEmail(email)
+             .addOnCompleteListener {task ->
+                 if (task.isSuccessful){
+                     Log.d("onComplete", "password reset email sent")
+                 }else {
+                     Log.d("onComplete", "Link not sent")
+                 }
+             }
+     }
+
     }

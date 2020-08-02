@@ -104,6 +104,4 @@ class RegisterFragment : Fragment() {
     private fun showProgressBar(view: View) {
         view.spin_kit.visibility = View.VISIBLE
     }
-
-
 }

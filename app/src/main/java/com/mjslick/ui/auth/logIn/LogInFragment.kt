@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mjslick.R
+import com.mjslick.ui.auth.resetPassword.ResetPasswordFragment
 import com.mjslick.ui.factory.LoginViewModelFactory
 import com.mjslick.utility.Network
 import kotlinx.android.synthetic.main.log_in_fragment.view.*
@@ -33,6 +34,7 @@ class LogInFragment : Fragment() {
         }
         viewModel.logout()
         logIn(root)
+        resetPassword(root)
         return root
     }
 
@@ -67,6 +69,13 @@ class LogInFragment : Fragment() {
                 Toast.makeText(requireContext(), "Network not available", Toast.LENGTH_SHORT).show()
             }
     }
+    }
+
+    private fun resetPassword(view: View){
+        view.forgot_password.setOnClickListener {
+            val resetPassword = ResetPasswordFragment()
+            resetPassword.show(requireActivity().supportFragmentManager, "dialog_password_reset")
+        }
     }
 
     private fun hideProgressBar(view: View) {
