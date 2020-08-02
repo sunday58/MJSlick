@@ -13,5 +13,4 @@ class Repository(private val firebaseSource: FirebaseSource) {
 
     fun logout() = firebaseSource.logout()
 
-    fun message(toastMessage: String) = firebaseSource.message(toastMessage)
 }

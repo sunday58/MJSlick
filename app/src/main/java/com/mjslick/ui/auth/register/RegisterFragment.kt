@@ -2,19 +2,21 @@ package com.mjslick.ui.auth.register
 
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mjslick.R
 import com.mjslick.model.User
 import com.mjslick.ui.factory.ViewModelFactory
-import kotlinx.android.synthetic.main.register_fragment.*
 import kotlinx.android.synthetic.main.register_fragment.view.*
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 class RegisterFragment : Fragment() {
 
@@ -38,7 +40,7 @@ class RegisterFragment : Fragment() {
 
    private fun registerUser(view: View){
        view.register.setOnClickListener {
-           view.spin_kit.visibility = View.VISIBLE
+           showProgressBar(view)
 
            val userEmail = Objects.requireNonNull(view.register_email.text.toString())
            val userPassword = Objects.requireNonNull(view.register_password.text.toString())
@@ -52,22 +54,39 @@ class RegisterFragment : Fragment() {
            if (TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword)) {
                Toast.makeText(activity?.applicationContext, "Register email and password must not be empty",
                    Toast.LENGTH_SHORT).show()
-               view.spin_kit.visibility = View.GONE
+               hideProgressBar(view)
            }else if (!userEmail.contains("@")){
                Toast.makeText(activity?.applicationContext, "Invalid email", Toast.LENGTH_SHORT).show()
-               view.spin_kit.visibility = View.GONE
-           }else {
+               hideProgressBar(view)
+           }else if (!isValidPassword(userPassword)){
+               Toast.makeText(activity?.applicationContext, "Password should contain, letter and number",
+                   Toast.LENGTH_SHORT).show()
+               hideProgressBar(view)
+           } else {
                viewModel.register(userEmail, userPassword, user)
-               toastMessage(viewModel.message(""))
                 Navigation.findNavController(view).navigate(R.id.navigation_logIn)
-               view.spin_kit.visibility = View.GONE
+               hideProgressBar(view)
                Toast.makeText(requireContext(), "Registered Successful", Toast.LENGTH_SHORT).show()
            }
        }
 
    }
-   private fun toastMessage(toastMessage: String) {
-        Toast.makeText(activity?.applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+
+   private fun isValidPassword(mPassword: String?): Boolean {
+        val pattern: Pattern
+        val matcher: Matcher
+        val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,20}$"
+        pattern = Pattern.compile(PASSWORD_PATTERN)
+        matcher = pattern.matcher(mPassword)
+        return matcher.matches()
     }
+
+    private fun hideProgressBar(view: View) {
+        view.spin_kit.visibility = View.GONE
+    }
+    private fun showProgressBar(view: View) {
+        view.spin_kit.visibility = View.VISIBLE
+    }
+
 
 }

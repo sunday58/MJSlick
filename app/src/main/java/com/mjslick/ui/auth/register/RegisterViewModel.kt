@@ -24,5 +24,4 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         fun currentUser() {
             repository.currentUser()
         }
-    fun message(toastMessage: String) = repository.message(toastMessage)
 }

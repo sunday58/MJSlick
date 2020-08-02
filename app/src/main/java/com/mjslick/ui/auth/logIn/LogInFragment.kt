@@ -1,22 +1,25 @@
 package com.mjslick.ui.auth.logIn
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.mjslick.R
-import kotlinx.android.synthetic.main.log_in_fragment.*
+import com.mjslick.ui.factory.LoginViewModelFactory
 import kotlinx.android.synthetic.main.log_in_fragment.view.*
+import java.util.*
 
 class LogInFragment : Fragment() {
 
+
     private lateinit var viewModel: LogInViewModel
-    private lateinit var textRegister: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,20 +27,52 @@ class LogInFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.log_in_fragment, container, false)
 
-        textRegister = root.findViewById(R.id.text_register)
-        textRegister.setOnClickListener {
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = LoginViewModelFactory(application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(LogInViewModel::class.java)
+
+
+       root.text_register.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_register)
         }
-        root.logIn.setOnClickListener {
-            Navigation.findNavController(root).navigate(R.id.navigation_female)
-        }
+        viewModel.logout()
+        logIn(root)
         return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LogInViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    private fun logIn(view: View){
+        view.logIn.setOnClickListener {
+            showProgressBar(view)
+            val email = Objects.requireNonNull(view.logIn_email.text.toString())
+            val password = Objects.requireNonNull(view.logIn_password.text.toString())
+            val duration = Snackbar.LENGTH_SHORT
+
+            if (email.isEmpty() || password.isEmpty()) {
+                snackBarMessage(view.logInLayout,
+                    "Login email and password can't be empty", duration)
+                hideProgressBar(view)
+            }else if (!email.contains("@")){
+                snackBarMessage(view.logInLayout, "invalid email", duration)
+                hideProgressBar(view)
+            }
+            else {
+                viewModel.login(email, password)
+                if (viewModel.currentUser() != null)
+                Navigation.findNavController(view).navigate(R.id.navigation_female)
+                hideProgressBar(view)
+            }
+        }
+    }
+
+    private fun snackBarMessage(view: View, message: String, duration: Int) {
+        Snackbar.make(view, message, duration).show()
+    }
+    private fun hideProgressBar(view: View) {
+        view.logInSpinKit.visibility = View.GONE
+    }
+    private fun showProgressBar(view: View) {
+        view.logInSpinKit.visibility = View.VISIBLE
     }
 
 }

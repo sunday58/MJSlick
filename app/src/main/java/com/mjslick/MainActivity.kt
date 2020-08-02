@@ -2,7 +2,9 @@ package com.mjslick
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
@@ -13,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.mjslick.database.FirebaseSource
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.system.exitProcess
 
@@ -108,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             ) { dialogInterface: DialogInterface, _: Int ->
                 dialogInterface.dismiss()
                 exitProcess(0)
+
             }
             .setNegativeButton(
                 "NO"

@@ -3,14 +3,20 @@ package com.mjslick.database
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.mjslick.ApplicationContext
+import com.mjslick.MainActivity
 import com.mjslick.model.User
+import com.mjslick.ui.auth.register.RegisterFragment
 import com.mjslick.utility.Constants
 import java.util.*
 
 
  class FirebaseSource {
+
 
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
@@ -27,11 +33,11 @@ import java.util.*
                     if (isNewUser!!){
                         initCurrentUserFirstTime(user)
                     }else {
-                        message(task.exception!!.localizedMessage!!)
+                        task.exception
                     }
 
                 }else {
-                   message(task.exception!!.localizedMessage!!)
+                    task.exception
                 }
             }
     }
@@ -41,8 +47,21 @@ import java.util.*
             .addOnCompleteListener { task ->
                 if (task.isSuccessful){
                     task.isComplete
-                }else{
-                    task.exception
+                }else if (!task.isSuccessful) {
+                   FirebaseAuth.AuthStateListener {
+                       try {
+                           throw task.exception!!.fillInStackTrace()
+                       }
+                       catch (invalidEmail: FirebaseAuthInvalidUserException){
+                           Log.d("error", invalidEmail.message!!)
+                       }
+                       catch (wrongCredentials: FirebaseAuthInvalidCredentialsException){
+                           Log.d("error", wrongCredentials.message!!)
+                       }
+                       catch (e: Exception){
+                           Log.d("error", e.message!!)
+                       }
+                   }
                 }
             }
     }
@@ -74,5 +93,4 @@ import java.util.*
 
     fun currentUser() = firebaseAuth.currentUser
 
-    fun message(toastMessage: String) = toastMessage
     }
