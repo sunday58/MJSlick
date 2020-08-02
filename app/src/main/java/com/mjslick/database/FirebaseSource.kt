@@ -5,17 +5,13 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.mjslick.ApplicationContext
-import com.mjslick.MainActivity
 import com.mjslick.model.User
-import com.mjslick.ui.auth.register.RegisterFragment
 import com.mjslick.utility.Constants
 import java.util.*
 
 
- class FirebaseSource {
+class FirebaseSource {
 
 
     private val firebaseAuth: FirebaseAuth by lazy {

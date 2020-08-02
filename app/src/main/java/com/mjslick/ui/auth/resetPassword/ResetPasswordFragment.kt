@@ -35,7 +35,7 @@ class ResetPasswordFragment : DialogFragment() {
 
     private fun resetPassword(view: View) {
 
-        passwordUpdate.setOnClickListener {
+       view.passwordUpdate.setOnClickListener {
 
              val email = Objects.requireNonNull(view.passwordResetText.text.toString())
 
