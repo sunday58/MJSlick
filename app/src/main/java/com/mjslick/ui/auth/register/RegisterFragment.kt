@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.mjslick.R
 import com.mjslick.model.User
 import com.mjslick.ui.factory.ViewModelFactory
+import com.mjslick.utility.Network
 import kotlinx.android.synthetic.main.register_fragment.view.*
 import java.util.*
 import java.util.regex.Matcher
@@ -19,7 +20,6 @@ import java.util.regex.Pattern
 
 
 class RegisterFragment : Fragment() {
-
 
     private lateinit var viewModel: RegisterViewModel
 
@@ -38,37 +38,54 @@ class RegisterFragment : Fragment() {
         return root
     }
 
-   private fun registerUser(view: View){
+   private fun registerUser(view: View) {
        view.register.setOnClickListener {
-           showProgressBar(view)
 
+           if (Network.isOnline(requireContext())){
+               showProgressBar(view)
            val userEmail = Objects.requireNonNull(view.register_email.text.toString())
            val userPassword = Objects.requireNonNull(view.register_password.text.toString())
-           val userPhone  = view.register_phoneNumber.text.toString()
+           val userPhone = view.register_phoneNumber.text.toString()
            val userTwitter = view.register_twitter.text.toString()
            val userFacebook = view.register_facebook.text.toString()
            val userLinkedin = view.register_Linkedin.text.toString()
 
-           val user = User(userEmail, userPhone, userTwitter, userFacebook, userLinkedin, listOf(), listOf())
+           val user = User(
+               userEmail,
+               userPhone,
+               userTwitter,
+               userFacebook,
+               userLinkedin,
+               listOf(),
+               listOf()
+           )
 
            if (TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword)) {
-               Toast.makeText(activity?.applicationContext, "Register email and password must not be empty",
-                   Toast.LENGTH_SHORT).show()
+               Toast.makeText(
+                   activity?.applicationContext, "Register email and password must not be empty",
+                   Toast.LENGTH_SHORT
+               ).show()
                hideProgressBar(view)
-           }else if (!userEmail.contains("@")){
-               Toast.makeText(activity?.applicationContext, "Invalid email", Toast.LENGTH_SHORT).show()
+           } else if (!userEmail.contains("@")) {
+               Toast.makeText(activity?.applicationContext, "Invalid email", Toast.LENGTH_SHORT)
+                   .show()
                hideProgressBar(view)
-           }else if (!isValidPassword(userPassword)){
-               Toast.makeText(activity?.applicationContext, "Password should contain, letter and number",
-                   Toast.LENGTH_SHORT).show()
+           } else if (!isValidPassword(userPassword)) {
+               Toast.makeText(
+                   activity?.applicationContext, "Password should contain, letter and number",
+                   Toast.LENGTH_SHORT
+               ).show()
                hideProgressBar(view)
            } else {
                viewModel.register(userEmail, userPassword, user)
-                Navigation.findNavController(view).navigate(R.id.navigation_logIn)
+               Navigation.findNavController(view).navigate(R.id.navigation_logIn)
                hideProgressBar(view)
                Toast.makeText(requireContext(), "Registered Successful", Toast.LENGTH_SHORT).show()
            }
-       }
+       }else {
+               Toast.makeText(requireContext(), "Network not available", Toast.LENGTH_SHORT).show()
+           }
+   }
 
    }
 
