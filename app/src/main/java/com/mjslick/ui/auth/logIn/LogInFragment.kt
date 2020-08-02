@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -40,20 +41,20 @@ class LogInFragment : Fragment() {
         return root
     }
 
-
     private fun logIn(view: View){
         view.logIn.setOnClickListener {
             showProgressBar(view)
             val email = Objects.requireNonNull(view.logIn_email.text.toString())
             val password = Objects.requireNonNull(view.logIn_password.text.toString())
-            val duration = Snackbar.LENGTH_SHORT
+
 
             if (email.isEmpty() || password.isEmpty()) {
-                snackBarMessage(view.logInLayout,
-                    "Login email and password can't be empty", duration)
+                Toast.makeText(activity?.applicationContext, "login email and password must not be empty",
+                    Toast.LENGTH_SHORT).show()
                 hideProgressBar(view)
             }else if (!email.contains("@")){
-                snackBarMessage(view.logInLayout, "invalid email", duration)
+                Toast.makeText(activity?.applicationContext, "Invalid email",
+                    Toast.LENGTH_SHORT).show()
                 hideProgressBar(view)
             }
             else {
@@ -65,9 +66,6 @@ class LogInFragment : Fragment() {
         }
     }
 
-    private fun snackBarMessage(view: View, message: String, duration: Int) {
-        Snackbar.make(view, message, duration).show()
-    }
     private fun hideProgressBar(view: View) {
         view.logInSpinKit.visibility = View.GONE
     }
