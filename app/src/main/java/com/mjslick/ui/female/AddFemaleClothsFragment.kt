@@ -26,6 +26,7 @@ import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.mjslick.R
+import com.mjslick.model.LadiesWear
 import com.mjslick.ui.auth.logIn.LogInViewModel
 import com.mjslick.ui.factory.AddFemaleClothFactory
 import com.mjslick.ui.factory.LoginViewModelFactory
@@ -137,11 +138,17 @@ class AddFemaleClothsFragment : Fragment() {
                 }
                 Log.d("result", root.shirtImage1.toString() + root.shirtImage2.toString()
                 + root.shirtImage3.toString() + root.shirtImage4.toString())
+
+                val clothsImages = listOf(selectedImageBytes)
+                if (root.shirtImage1 != null)
+                viewModel.uploadFemaleClothImage(clothsImages) {imagePath ->
+                    addFemaleCloth(imagePath)
+                }
             }
         }
     }
 
-   private fun addFemaleCloth() {
+   private fun addFemaleCloth(images: List<String>) {
 
         root.saveFemaleCloths.setOnClickListener {
             val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
@@ -151,8 +158,15 @@ class AddFemaleClothsFragment : Fragment() {
             val trouserPrice = root.female_trouser_price.text.toString()
             val completePrice = root.female_complete_price.text.toString()
 
-            if (clothName.isEmpty() || clothDescription.isEmpty() || completePrice.isEmpty()){
-
+            val femaleWear = LadiesWear(clothName, clothType, clothDescription,
+                topPrice, trouserPrice, completePrice, images)
+            if (clothName.isEmpty() || clothDescription.isEmpty()){
+                Toast.makeText(requireContext(), "Name and description can not be empty",
+                Toast.LENGTH_SHORT).show()
+            }else {
+                viewModel.addFemaleCloth(femaleWear)
+                Toast.makeText(requireContext(), "cloths added successfully",
+                    Toast.LENGTH_SHORT).show()
             }
         }
 

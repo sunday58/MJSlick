@@ -165,7 +165,7 @@ class FirebaseSource {
 
 
     //database storage
-    fun uploadFemaleClothImage(imageBytes: ByteArray,
+    fun uploadFemaleClothImage(imageBytes: List<ByteArray>,
                                onSuccess: (imagePath: List<String>) -> Unit){
         val ref = currentUserStorageRef.child(
             "femaleClothPictures/${UUID.nameUUIDFromBytes(imageBytes)}")
