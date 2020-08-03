@@ -5,9 +5,7 @@ data class User(
     val phone: String,
     val twitter: String,
     val facebook: String,
-    val linkedin: String,
-    val ladiesWear: List<LadiesWear>,
-    val maleWear: List<MaleWear>
+    val linkedin: String
 ) {
-    constructor(): this("", "", "", "", "", listOf(), listOf())
+    constructor(): this("", "", "", "", "")
 }

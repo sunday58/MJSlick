@@ -1,14 +1,21 @@
 package com.mjslick.database
 
+import android.content.Context
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.mjslick.model.LadiesWear
 import com.mjslick.model.User
 import com.mjslick.utility.Constants
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class FirebaseSource {
@@ -20,6 +27,20 @@ class FirebaseSource {
     private val firestoreInstance: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
+    private val storageInstance: FirebaseStorage by lazy {
+        FirebaseStorage.getInstance() }
+
+
+    private val currentUserDocRef: DocumentReference
+        get() = firestoreInstance.document(
+            "users/${FirebaseAuth.getInstance().currentUser?.email
+            ?: throw NullPointerException("UID is null.")}")
+
+    private val currentUserStorageRef: StorageReference
+        get() = storageInstance.reference
+            .child(FirebaseAuth.getInstance().currentUser?.uid ?:
+            throw NullPointerException("UID is null"))
+
 
     fun register(email: String, password: String, user: User){
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -70,11 +91,10 @@ class FirebaseSource {
         user[Constants.TWITTER] = firebaseUser.twitter
         user[Constants.FACEBOOK] = firebaseUser.facebook
         user[Constants.LINKEDIN] = firebaseUser.linkedin
-        user[Constants.LADIESWEAR] = firebaseUser.ladiesWear
-        user[Constants.MALEWEAR] = firebaseUser.maleWear
+
 
         val newUser: Task<Void> =
-            firestoreInstance.collection(Constants.USERS_COLLECTION).document(firebaseUser.email)
+           currentUserDocRef
                 .set(user)
         newUser.addOnSuccessListener {
             Log.d("New User", "User was successfully added")
@@ -100,4 +120,61 @@ class FirebaseSource {
              }
      }
 
+
+     fun addFemaleCloth( item: LadiesWear){
+
+        val femaleCloth: MutableMap<String, Any> = HashMap()
+        femaleCloth[Constants.CLOTH_NAME] = item.clothName
+        femaleCloth[Constants.CLOTH_TYPE] = item.clothType
+        femaleCloth[Constants.CLOTH_DESCRIPTION] = item.clothDescription
+        femaleCloth[Constants.TOP_PRICE] = item.topPrice
+        femaleCloth[Constants.TROUSER_PRICE] = item.trouserPrice
+        femaleCloth[Constants.COMPLETE_PRICE] = item.completePrice
+        femaleCloth[Constants.CLOTH_IMAGES] = item.clothImages
+
+        val newFemaleCloth: Task<DocumentReference> =
+            currentUserDocRef
+                .collection(Constants.FEMALE_CLOTH_COLLECTION)
+                .add(femaleCloth)
+               newFemaleCloth.addOnSuccessListener {
+                    Log.d("female Cloth", "Cloth added")
+                }.addOnFailureListener {
+                    Log.d("female cloth", "failed to add female cloth")
+                }
+
+    }
+
+    fun addFemaleClothListener(context: Context,
+                                onListen: (List<LadiesWear>) -> Unit): ListenerRegistration{
+        return currentUserDocRef
+            .collection(Constants.FEMALE_CLOTH_COLLECTION)
+            .orderBy(Constants.CLOTH_TYPE)
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    Log.e("Firestore", "female cloths listener error", error)
+                    return@addSnapshotListener
+                }
+                val items = mutableListOf<LadiesWear>()
+                value!!.documents.forEach {
+
+                    //TODO("add item to adapter")
+                }
+                onListen(items)
+            }
+    }
+
+
+    //database storage
+    fun uploadFemaleClothImage(imageBytes: ByteArray,
+                               onSuccess: (imagePath: List<String>) -> Unit){
+        val ref = currentUserStorageRef.child(
+            "femaleClothPictures/${UUID.nameUUIDFromBytes(imageBytes)}")
+                    ref.putBytes(imageBytes)
+                        .addOnSuccessListener {
+                            onSuccess(listOf(ref.path))
+                        }
+
+    }
+
+    fun pathToReference(path: String) = storageInstance.getReference(path)
     }

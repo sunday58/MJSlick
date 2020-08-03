@@ -1,5 +1,6 @@
 package com.mjslick.database
 
+import com.mjslick.model.LadiesWear
 import com.mjslick.model.User
 
 class Repository(private val firebaseSource: FirebaseSource) {
@@ -15,4 +16,9 @@ class Repository(private val firebaseSource: FirebaseSource) {
 
     fun resetPassword(email: String) = firebaseSource.resetPassword(email)
 
+    fun addFemaleCloth(item: LadiesWear) = firebaseSource.addFemaleCloth(item)
+
+    fun upLoadFemaleClothImage(imageBytes: ByteArray,
+                               onSuccess: (imagePath: List<String>) -> Unit)
+            = firebaseSource.uploadFemaleClothImage(imageBytes, onSuccess)
 }

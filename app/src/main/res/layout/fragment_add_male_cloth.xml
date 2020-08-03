@@ -173,6 +173,7 @@
                     android:layout_height="100dp"
                     app:siShape="@drawable/shirt_image_shape"
                     app:siSquare="true"
+                    android:visibility="gone"
                     android:scaleType="centerCrop"/>
 
                 <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
@@ -181,6 +182,7 @@
                     android:layout_height="100dp"
                     app:siShape="@drawable/shirt_image_shape"
                     app:siSquare="true"
+                    android:visibility="gone"
                     android:layout_toEndOf="@id/maleShirtImage1"
                     android:layout_marginStart="16dp"
                     android:scaleType="centerCrop"/>
@@ -191,6 +193,7 @@
                     android:layout_height="100dp"
                     app:siShape="@drawable/shirt_image_shape"
                     app:siSquare="true"
+                    android:visibility="gone"
                     android:layout_below="@id/maleShirtImage2"
                     android:layout_marginTop="16dp"
                     android:scaleType="centerCrop"/>
@@ -201,6 +204,7 @@
                     android:layout_height="100dp"
                     app:siShape="@drawable/shirt_image_shape"
                     app:siSquare="true"
+                    android:visibility="gone"
                     android:layout_toEndOf="@id/maleShirtImage3"
                     android:layout_below="@id/maleShirtImage2"
                     android:layout_marginStart="16dp"

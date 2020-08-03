@@ -55,9 +55,7 @@ class RegisterFragment : Fragment() {
                userPhone,
                userTwitter,
                userFacebook,
-               userLinkedin,
-               listOf(),
-               listOf()
+               userLinkedin
            )
 
            if (TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword)) {

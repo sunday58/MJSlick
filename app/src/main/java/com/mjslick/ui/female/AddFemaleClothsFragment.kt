@@ -14,26 +14,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.mjslick.R
+import com.mjslick.ui.auth.logIn.LogInViewModel
+import com.mjslick.ui.factory.AddFemaleClothFactory
+import com.mjslick.ui.factory.LoginViewModelFactory
 import com.mjslick.utility.Constants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
 import com.mjslick.utility.Constants.OPEN_MEDIA_PICKER
 import kotlinx.android.synthetic.main.fragment_add_female_cloths.view.*
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class AddFemaleClothsFragment : Fragment() {
 
-    private lateinit var shirtImage1: PorterShapeImageView
-    private lateinit var shirtImage2: PorterShapeImageView
-    private lateinit var shirtImage3: PorterShapeImageView
-    private lateinit var shirtImage4: PorterShapeImageView
+
     private lateinit var selectedImageBytes: ByteArray
+
+    private lateinit var viewModel: AddFemaleClothViewModel
+
+    private lateinit var root: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +53,12 @@ class AddFemaleClothsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_add_female_cloths, container, false)
+         root = inflater.inflate(R.layout.fragment_add_female_cloths, container, false)
 
-        shirtImage1 = root.findViewById(R.id.shirtImage1)
-        shirtImage2 = root.findViewById(R.id.shirtImage2)
-        shirtImage3 = root.findViewById(R.id.shirtImage3)
-        shirtImage4 = root.findViewById(R.id.shirtImage4)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = AddFemaleClothFactory(application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AddFemaleClothViewModel::class.java)
+
 
         root.femaleSelectPicture.setOnClickListener {
             clearImage()
@@ -91,27 +100,28 @@ class AddFemaleClothsFragment : Fragment() {
                             selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
                             selectedImageBytes = outputStream.toByteArray()
 
-                            if (i == 0) {
-                                loadImage(selectedImageBytes, shirtImage1)
-                                shirtImage1.visibility = View.VISIBLE
-                            }
-                            if (i == 1) {
-                                loadImage(selectedImageBytes, shirtImage2)
-                                shirtImage2.visibility = View.VISIBLE
-                            }
-                            if (i == 2) {
-                                loadImage(selectedImageBytes, shirtImage3)
-                                shirtImage3.visibility = View.VISIBLE
-                            }
-                            if (i == 3) {
-                                loadImage(selectedImageBytes, shirtImage4)
-                                shirtImage4.visibility = View.VISIBLE
-                            }
-                            if (i == 4) {
-                            Toast.makeText(requireContext(), "Can't select more than 4 item, try again",
-                                Toast.LENGTH_LONG).show()
-                           clearImage()
-                        }
+                                when(i){
+                                   0 -> {
+                                      loadImage(selectedImageBytes, root.shirtImage1)
+                                      root.shirtImage1.visibility = View.VISIBLE
+                                  }
+                                  1 -> {
+                                      loadImage(selectedImageBytes, root.shirtImage2)
+                                      root.shirtImage2.visibility = View.VISIBLE
+                                  }
+                                  2 -> {
+                                      loadImage(selectedImageBytes, root.shirtImage3)
+                                      root.shirtImage3.visibility = View.VISIBLE
+                                  }
+                                  3 -> {
+                                      loadImage(selectedImageBytes, root.shirtImage4)
+                                      root.shirtImage4.visibility = View.VISIBLE
+                                  }  else -> {
+                                    Toast.makeText(requireContext(), "Can't select more than 4 item, try again",
+                                        Toast.LENGTH_LONG).show()
+                                    clearImage()
+                                }
+                                }
 
                     }
                 }else if (data.data != null){
@@ -122,14 +132,31 @@ class AddFemaleClothsFragment : Fragment() {
                     val singleOutputStream = ByteArrayOutputStream()
                     singleImageBmp.compress(Bitmap.CompressFormat.JPEG, 90, singleOutputStream)
                     selectedImageBytes = singleOutputStream.toByteArray()
-                    loadImage(selectedImageBytes, shirtImage1)
-                    shirtImage1.visibility = View.VISIBLE
+                    loadImage(selectedImageBytes, root.shirtImage1)
+                    root.shirtImage1.visibility = View.VISIBLE
                 }
-                Log.d("result", shirtImage1.toString() + shirtImage2.toString()
-                + shirtImage3.toString() + shirtImage4.toString())
+                Log.d("result", root.shirtImage1.toString() + root.shirtImage2.toString()
+                + root.shirtImage3.toString() + root.shirtImage4.toString())
             }
         }
     }
+
+   private fun addFemaleCloth() {
+
+        root.saveFemaleCloths.setOnClickListener {
+            val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
+            val clothType = root.select_female_cloth.selectedItem.toString()
+            val clothDescription = root.female_cloth_description.text.toString()
+            val topPrice = root.female_top_price.text.toString()
+            val trouserPrice = root.female_trouser_price.text.toString()
+            val completePrice = root.female_complete_price.text.toString()
+
+            if (clothName.isEmpty() || clothDescription.isEmpty() || completePrice.isEmpty()){
+
+            }
+        }
+
+   }
 
     private fun loadImage(imageByte : ByteArray, imageView: ImageView){
         Glide.with(requireContext())
@@ -139,14 +166,14 @@ class AddFemaleClothsFragment : Fragment() {
     }
 
     private fun clearImage(){
-        shirtImage1.setImageResource(android.R.color.transparent)
-        shirtImage2.setImageResource(android.R.color.transparent)
-        shirtImage3.setImageResource(android.R.color.transparent)
-        shirtImage4.setImageResource(android.R.color.transparent)
-        shirtImage1.visibility = View.GONE
-        shirtImage2.visibility = View.GONE
-        shirtImage3.visibility = View.GONE
-        shirtImage4.visibility = View.GONE
+        root.shirtImage1.setImageResource(android.R.color.transparent)
+        root.shirtImage2.setImageResource(android.R.color.transparent)
+        root.shirtImage3.setImageResource(android.R.color.transparent)
+        root.shirtImage4.setImageResource(android.R.color.transparent)
+        root.shirtImage1.visibility = View.GONE
+        root.shirtImage2.visibility = View.GONE
+        root.shirtImage3.visibility = View.GONE
+        root.shirtImage4.visibility = View.GONE
     }
 
     private fun permissionIfNeeded(): Boolean {

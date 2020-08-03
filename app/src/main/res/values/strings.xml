@@ -26,5 +26,6 @@
     <string-array name="cloths">
         <item>Shirt</item>
         <item>Trouser</item>
+        <item>Complete</item>
     </string-array>
 </resources>
