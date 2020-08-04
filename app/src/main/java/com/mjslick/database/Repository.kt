@@ -18,7 +18,6 @@ class Repository(private val firebaseSource: FirebaseSource) {
 
     fun addFemaleCloth(item: LadiesWear) = firebaseSource.addFemaleCloth(item)
 
-    fun upLoadFemaleClothImage(imageBytes: ByteArray,
-                               onSuccess: (imagePath: List<String>) -> Unit)
-            = firebaseSource.uploadFemaleClothImage(imageBytes, onSuccess)
+    fun upLoadFemaleClothImage(imageBytes: List<ByteArray>)
+            = firebaseSource.uploadFemaleClothImage(imageBytes)
 }

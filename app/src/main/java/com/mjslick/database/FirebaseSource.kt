@@ -130,12 +130,14 @@ class FirebaseSource {
         femaleCloth[Constants.TOP_PRICE] = item.topPrice
         femaleCloth[Constants.TROUSER_PRICE] = item.trouserPrice
         femaleCloth[Constants.COMPLETE_PRICE] = item.completePrice
-        femaleCloth[Constants.CLOTH_IMAGES] = item.clothImages
+         femaleCloth[Constants.CLOTH_IMAGES] = item.clothImages
+
 
         val newFemaleCloth: Task<DocumentReference> =
             currentUserDocRef
                 .collection(Constants.FEMALE_CLOTH_COLLECTION)
                 .add(femaleCloth)
+
                newFemaleCloth.addOnSuccessListener {
                     Log.d("female Cloth", "Cloth added")
                 }.addOnFailureListener {
@@ -163,16 +165,49 @@ class FirebaseSource {
             }
     }
 
-
     //database storage
-    fun uploadFemaleClothImage(imageBytes: List<ByteArray>,
-                               onSuccess: (imagePath: List<String>) -> Unit){
+    fun uploadFemaleClothImage(imageBytes: List<ByteArray>){
+
+//        val urlString = ArrayList<String>()
         val ref = currentUserStorageRef.child(
-            "femaleClothPictures/${UUID.nameUUIDFromBytes(imageBytes)}")
-                    ref.putBytes(imageBytes)
-                        .addOnSuccessListener {
-                            onSuccess(listOf(ref.path))
-                        }
+            "femaleCloths")
+
+        for (uploadCount in imageBytes.indices) {
+            val individualImage = imageBytes[uploadCount]
+            val imageName = ref.child("Images" + UUID.randomUUID().toString())
+
+            imageName.putBytes(individualImage)
+                .addOnSuccessListener {
+
+                    imageName.downloadUrl.addOnSuccessListener {uri ->
+//                        urlString.add(uri.toString())
+                        val url = java.lang.String.valueOf(uri)
+                        getImageUrlLink(url)
+                    }
+                }
+        }
+    }
+
+    private fun getImageUrlLink(imagePath: String){
+
+        val hashMap: HashMap<String, Any> = HashMap()
+
+        hashMap["clothesImage"] = imagePath
+
+//        for (i in imagePath.indices){
+//            hashMap[Constants.CLOTH_IMAGES] = imagePath[i]
+
+            currentUserDocRef
+                .collection(Constants.FEMALE_CLOTH_COLLECTION)
+                .add(hashMap)
+                .addOnCompleteListener {task ->
+                    if (task.isSuccessful){
+                        Log.d("imageUrl", "Uploaded image urls")
+                    }
+                }.addOnFailureListener {exception ->
+                    Log.d("ImageUrlError",
+                        "Failed to upload image Url", exception)
+                }
 
     }
 

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,8 +18,10 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
@@ -124,7 +127,16 @@ class AddFemaleClothsFragment : Fragment() {
                                 }
                                 }
 
+                        val clothsImages = listOf(selectedImageBytes)
+
+                        if (root.shirtImage1 != null) {
+                            addFemaleCloth()
+                            viewModel.uploadFemaleClothImage(clothsImages)
+                            Log.d("images", clothsImages.toString())
+                        }
                     }
+
+
                 }else if (data.data != null){
                     val imageLink = data.data
                     val singleImageBmp = MediaStore.Images.Media
@@ -135,20 +147,16 @@ class AddFemaleClothsFragment : Fragment() {
                     selectedImageBytes = singleOutputStream.toByteArray()
                     loadImage(selectedImageBytes, root.shirtImage1)
                     root.shirtImage1.visibility = View.VISIBLE
+
                 }
                 Log.d("result", root.shirtImage1.toString() + root.shirtImage2.toString()
                 + root.shirtImage3.toString() + root.shirtImage4.toString())
 
-                val clothsImages = listOf(selectedImageBytes)
-                if (root.shirtImage1 != null)
-                viewModel.uploadFemaleClothImage(clothsImages) {imagePath ->
-                    addFemaleCloth(imagePath)
-                }
             }
         }
     }
 
-   private fun addFemaleCloth(images: List<String>) {
+   private fun addFemaleCloth() {
 
         root.saveFemaleCloths.setOnClickListener {
             val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
@@ -159,7 +167,7 @@ class AddFemaleClothsFragment : Fragment() {
             val completePrice = root.female_complete_price.text.toString()
 
             val femaleWear = LadiesWear(clothName, clothType, clothDescription,
-                topPrice, trouserPrice, completePrice, images)
+                topPrice, trouserPrice, completePrice, listOf())
             if (clothName.isEmpty() || clothDescription.isEmpty()){
                 Toast.makeText(requireContext(), "Name and description can not be empty",
                 Toast.LENGTH_SHORT).show()
@@ -167,6 +175,7 @@ class AddFemaleClothsFragment : Fragment() {
                 viewModel.addFemaleCloth(femaleWear)
                 Toast.makeText(requireContext(), "cloths added successfully",
                     Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(root).navigate(R.id.navigation_female)
             }
         }
 

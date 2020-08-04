@@ -8,6 +8,7 @@ data class LadiesWear(
     val trouserPrice: String,
     val completePrice: String,
     val clothImages: List<String>
+
 ) {
     constructor(): this("", "", "", "",
     "", "", listOf())
