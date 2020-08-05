@@ -7,9 +7,9 @@ data class LadiesWear(
     val topPrice: String,
     val trouserPrice: String,
     val completePrice: String,
-    val clothImages: List<String>
+    val clothImages: ArrayList<String>
 
 ) {
     constructor(): this("", "", "", "",
-    "", "", listOf())
+    "", "", arrayListOf())
 }

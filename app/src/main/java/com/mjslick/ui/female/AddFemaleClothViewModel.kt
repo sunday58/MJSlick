@@ -18,6 +18,7 @@ class AddFemaleClothViewModel(application: Application) : AndroidViewModel(appli
 
     fun addFemaleCloth(item: LadiesWear) = repository.addFemaleCloth(item)
 
-    fun uploadFemaleClothImage(imageBytes: List<ByteArray>)
-                    = repository.upLoadFemaleClothImage(imageBytes)
+    fun uploadFemaleClothImage(imageBytes: List<ByteArray>,
+                               onSuccess: (imagePath: ArrayList<String>) -> Unit)
+                    = repository.upLoadFemaleClothImage(imageBytes, onSuccess)
 }

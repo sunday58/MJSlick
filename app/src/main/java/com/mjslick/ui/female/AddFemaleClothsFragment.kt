@@ -38,6 +38,7 @@ import com.mjslick.utility.Constants.OPEN_MEDIA_PICKER
 import kotlinx.android.synthetic.main.fragment_add_female_cloths.view.*
 import java.io.ByteArrayOutputStream
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AddFemaleClothsFragment : Fragment() {
 
@@ -126,16 +127,18 @@ class AddFemaleClothsFragment : Fragment() {
                                     clearImage()
                                 }
                                 }
-
                         val clothsImages = listOf(selectedImageBytes)
-
                         if (root.shirtImage1 != null) {
-                            addFemaleCloth()
-                            viewModel.uploadFemaleClothImage(clothsImages)
-                            Log.d("images", clothsImages.toString())
-                        }
-                    }
+                            viewModel.uploadFemaleClothImage(clothsImages){imagePath ->
+                                addFemaleCloth(imagePath)
 
+                                Log.d("clothes", imagePath.toString())
+                            }
+                        }else {
+                            Toast.makeText(requireContext(), "Please select Image",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                        }
 
                 }else if (data.data != null){
                     val imageLink = data.data
@@ -149,25 +152,24 @@ class AddFemaleClothsFragment : Fragment() {
                     root.shirtImage1.visibility = View.VISIBLE
 
                 }
-                Log.d("result", root.shirtImage1.toString() + root.shirtImage2.toString()
-                + root.shirtImage3.toString() + root.shirtImage4.toString())
-
             }
         }
     }
 
-   private fun addFemaleCloth() {
+   private fun addFemaleCloth(imagePath: ArrayList<String>) {
+       Log.d("clothImagePaths", imagePath.toString())
+
+       val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
+       val clothType = root.select_female_cloth.selectedItem.toString()
+       val clothDescription = root.female_cloth_description.text.toString()
+       val topPrice = root.female_top_price.text.toString()
+       val trouserPrice = root.female_trouser_price.text.toString()
+       val completePrice = root.female_complete_price.text.toString()
+
+       val femaleWear = LadiesWear(clothName, clothType, clothDescription,
+           topPrice, trouserPrice, completePrice, imagePath)
 
         root.saveFemaleCloths.setOnClickListener {
-            val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
-            val clothType = root.select_female_cloth.selectedItem.toString()
-            val clothDescription = root.female_cloth_description.text.toString()
-            val topPrice = root.female_top_price.text.toString()
-            val trouserPrice = root.female_trouser_price.text.toString()
-            val completePrice = root.female_complete_price.text.toString()
-
-            val femaleWear = LadiesWear(clothName, clothType, clothDescription,
-                topPrice, trouserPrice, completePrice, listOf())
             if (clothName.isEmpty() || clothDescription.isEmpty()){
                 Toast.makeText(requireContext(), "Name and description can not be empty",
                 Toast.LENGTH_SHORT).show()

@@ -15,6 +15,7 @@ import com.mjslick.model.LadiesWear
 import com.mjslick.model.User
 import com.mjslick.utility.Constants
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
@@ -120,7 +121,6 @@ class FirebaseSource {
              }
      }
 
-
      fun addFemaleCloth( item: LadiesWear){
 
         val femaleCloth: MutableMap<String, Any> = HashMap()
@@ -166,9 +166,9 @@ class FirebaseSource {
     }
 
     //database storage
-    fun uploadFemaleClothImage(imageBytes: List<ByteArray>){
+    fun uploadFemaleClothImage(imageBytes: List<ByteArray>,
+                                onSuccess: (imagePath: ArrayList<String>) -> Unit){
 
-//        val urlString = ArrayList<String>()
         val ref = currentUserStorageRef.child(
             "femaleCloths")
 
@@ -178,37 +178,12 @@ class FirebaseSource {
 
             imageName.putBytes(individualImage)
                 .addOnSuccessListener {
-
                     imageName.downloadUrl.addOnSuccessListener {uri ->
-//                        urlString.add(uri.toString())
                         val url = java.lang.String.valueOf(uri)
-                        getImageUrlLink(url)
+                        onSuccess(arrayListOf(url))
                     }
                 }
         }
-    }
-
-    private fun getImageUrlLink(imagePath: String){
-
-        val hashMap: HashMap<String, Any> = HashMap()
-
-        hashMap["clothesImage"] = imagePath
-
-//        for (i in imagePath.indices){
-//            hashMap[Constants.CLOTH_IMAGES] = imagePath[i]
-
-            currentUserDocRef
-                .collection(Constants.FEMALE_CLOTH_COLLECTION)
-                .add(hashMap)
-                .addOnCompleteListener {task ->
-                    if (task.isSuccessful){
-                        Log.d("imageUrl", "Uploaded image urls")
-                    }
-                }.addOnFailureListener {exception ->
-                    Log.d("ImageUrlError",
-                        "Failed to upload image Url", exception)
-                }
-
     }
 
     fun pathToReference(path: String) = storageInstance.getReference(path)
