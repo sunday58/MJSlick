@@ -7,7 +7,7 @@ object Constants {
     const val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 100
     const val USERS_COLLECTION = "MJSlick"
     const val FEMALE_CLOTH_COLLECTION = "Females"
-    const val MALE_CLOTH_COLLECTION = "MJSlick"
+    const val MALE_CLOTH_COLLECTION = "Males"
     const val EMAIL ="email"
     const val PHONE ="phone"
     const val TWITTER = "twitter"

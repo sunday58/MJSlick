@@ -12,6 +12,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mjslick.model.LadiesWear
+import com.mjslick.model.MaleWear
 import com.mjslick.model.User
 import com.mjslick.utility.Constants
 import java.util.*
@@ -143,6 +144,31 @@ class FirebaseSource {
                 }.addOnFailureListener {
                     Log.d("female cloth", "failed to add female cloth")
                 }
+
+    }
+
+    fun addMaleCloth( item: MaleWear){
+
+        val maleCloth: MutableMap<String, Any> = HashMap()
+        maleCloth[Constants.CLOTH_NAME] = item.clothName
+        maleCloth[Constants.CLOTH_TYPE] = item.clothType
+        maleCloth[Constants.CLOTH_DESCRIPTION] = item.clothDescription
+        maleCloth[Constants.TOP_PRICE] = item.topPrice
+        maleCloth[Constants.TROUSER_PRICE] = item.trouserPrice
+        maleCloth[Constants.COMPLETE_PRICE] = item.completePrice
+        maleCloth[Constants.CLOTH_IMAGES] = item.clothImages
+
+
+        val newMaleCloth: Task<DocumentReference> =
+            currentUserDocRef
+                .collection(Constants.MALE_CLOTH_COLLECTION)
+                .add(maleCloth)
+
+        newMaleCloth.addOnSuccessListener {
+            Log.d("male Cloth", "Cloth added")
+        }.addOnFailureListener {
+            Log.d("male cloth", "failed to add male cloth")
+        }
 
     }
 

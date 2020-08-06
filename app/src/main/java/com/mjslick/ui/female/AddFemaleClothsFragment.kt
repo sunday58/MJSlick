@@ -151,6 +151,18 @@ class AddFemaleClothsFragment : Fragment() {
                     loadImage(selectedImageBytes, root.shirtImage1)
                     root.shirtImage1.visibility = View.VISIBLE
 
+                    val clothsImages = listOf(selectedImageBytes)
+                    if (root.shirtImage1 != null) {
+                        viewModel.uploadFemaleClothImage(clothsImages){imagePath ->
+                            addFemaleCloth(imagePath)
+
+                            Log.d("clothes", imagePath.toString())
+                        }
+                    }else {
+                        Toast.makeText(requireContext(), "Please select Image",
+                            Toast.LENGTH_SHORT).show()
+                    }
+
                 }
             }
         }
@@ -180,7 +192,6 @@ class AddFemaleClothsFragment : Fragment() {
                 Navigation.findNavController(root).navigate(R.id.navigation_female)
             }
         }
-
    }
 
     private fun loadImage(imageByte : ByteArray, imageView: ImageView){
