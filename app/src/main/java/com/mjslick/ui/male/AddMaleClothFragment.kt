@@ -9,31 +9,29 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
-import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
 import com.mjslick.R
+import com.mjslick.ui.factory.AddMaleClothFactory
 import com.mjslick.utility.Constants
-import kotlinx.android.synthetic.main.fragment_add_female_cloths.view.*
 import kotlinx.android.synthetic.main.fragment_add_male_cloth.view.*
 import java.io.ByteArrayOutputStream
 
 class AddMaleClothFragment : Fragment() {
 
-    private lateinit var shirtImage1: PorterShapeImageView
-    private lateinit var shirtImage2: PorterShapeImageView
-    private lateinit var shirtImage3: PorterShapeImageView
-    private lateinit var shirtImage4: PorterShapeImageView
+
     private lateinit var selectedImageBytes: ByteArray
+    private lateinit var viewModel: AddMaleClothViewModel
+    private lateinit var root: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +42,11 @@ class AddMaleClothFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_add_male_cloth, container, false)
+         root = inflater.inflate(R.layout.fragment_add_male_cloth, container, false)
 
-        shirtImage1 = root.findViewById(R.id.maleShirtImage1)
-        shirtImage2 = root.findViewById(R.id.maleShirtImage2)
-        shirtImage3 = root.findViewById(R.id.maleShirtImage3)
-        shirtImage4 = root.findViewById(R.id.maleShirtImage4)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = AddMaleClothFactory(application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AddMaleClothViewModel::class.java)
 
 
         root.maleSelectPicture.setOnClickListener {
@@ -94,20 +91,20 @@ class AddMaleClothFragment : Fragment() {
                         selectedImageBytes = outputStream.toByteArray()
 
                         if (i == 0) {
-                            loadImage(selectedImageBytes, shirtImage1)
-                            shirtImage1.visibility = View.VISIBLE
+                            loadImage(selectedImageBytes,root.maleShirtImage1)
+                            root.maleShirtImage1.visibility = View.VISIBLE
                         }
                         if (i == 1) {
-                            loadImage(selectedImageBytes, shirtImage2)
-                            shirtImage2.visibility = View.VISIBLE
+                            loadImage(selectedImageBytes, root.maleShirtImage2)
+                            root.maleShirtImage2.visibility = View.VISIBLE
                         }
                         if (i == 2) {
-                            loadImage(selectedImageBytes, shirtImage3)
-                            shirtImage3.visibility = View.VISIBLE
+                            loadImage(selectedImageBytes, root.maleShirtImage3)
+                            root.maleShirtImage3.visibility = View.VISIBLE
                         }
                         if (i == 3) {
-                            loadImage(selectedImageBytes, shirtImage4)
-                            shirtImage4.visibility = View.VISIBLE
+                            loadImage(selectedImageBytes, root.maleShirtImage4)
+                            root.maleShirtImage4.visibility = View.VISIBLE
                         }
                         if (i == 4) {
                             Toast.makeText(requireContext(), "Can't select more than 4 item, try again",
@@ -124,15 +121,13 @@ class AddMaleClothFragment : Fragment() {
                     val singleOutputStream = ByteArrayOutputStream()
                     singleImageBmp.compress(Bitmap.CompressFormat.JPEG, 90, singleOutputStream)
                     selectedImageBytes = singleOutputStream.toByteArray()
-                    loadImage(selectedImageBytes, shirtImage1)
-                    shirtImage1.visibility = View.VISIBLE
+                    loadImage(selectedImageBytes, root.maleShirtImage1)
+                    root.maleShirtImage1.visibility = View.VISIBLE
                 }
-                Log.d("result", shirtImage1.toString() + shirtImage2.toString()
-                        + shirtImage3.toString() + shirtImage4.toString())
+
             }
         }
     }
-
 
     private fun loadImage(imageByte : ByteArray, imageView: ImageView){
         Glide.with(requireContext())
@@ -141,14 +136,14 @@ class AddMaleClothFragment : Fragment() {
             .into(imageView)
     }
     private fun clearImage(){
-        shirtImage1.setImageResource(android.R.color.transparent)
-        shirtImage2.setImageResource(android.R.color.transparent)
-        shirtImage3.setImageResource(android.R.color.transparent)
-        shirtImage4.setImageResource(android.R.color.transparent)
-        shirtImage1.visibility = View.GONE
-        shirtImage2.visibility = View.GONE
-        shirtImage3.visibility = View.GONE
-        shirtImage4.visibility = View.GONE
+        root.maleShirtImage1.setImageResource(android.R.color.transparent)
+        root.maleShirtImage2.setImageResource(android.R.color.transparent)
+        root.maleShirtImage3.setImageResource(android.R.color.transparent)
+        root.maleShirtImage4.setImageResource(android.R.color.transparent)
+        root.maleShirtImage1.visibility = View.GONE
+        root.maleShirtImage2.visibility = View.GONE
+        root.maleShirtImage3.visibility = View.GONE
+        root.maleShirtImage4.visibility = View.GONE
     }
 
     private fun permissionIfNeeded(): Boolean {

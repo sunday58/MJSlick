@@ -171,17 +171,17 @@ class AddFemaleClothsFragment : Fragment() {
    private fun addFemaleCloth(imagePath: ArrayList<String>) {
        Log.d("clothImagePaths", imagePath.toString())
 
-       val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
-       val clothType = root.select_female_cloth.selectedItem.toString()
-       val clothDescription = root.female_cloth_description.text.toString()
-       val topPrice = root.female_top_price.text.toString()
-       val trouserPrice = root.female_trouser_price.text.toString()
-       val completePrice = root.female_complete_price.text.toString()
-
-       val femaleWear = LadiesWear(clothName, clothType, clothDescription,
-           topPrice, trouserPrice, completePrice, imagePath)
-
         root.saveFemaleCloths.setOnClickListener {
+            val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
+            val clothType = root.select_female_cloth.selectedItem.toString()
+            val clothDescription = root.female_cloth_description.text.toString()
+            val topPrice = root.female_top_price.text.toString()
+            val trouserPrice = root.female_trouser_price.text.toString()
+            val completePrice = root.female_complete_price.text.toString()
+
+            val femaleWear = LadiesWear(clothName, clothType, clothDescription,
+                topPrice, trouserPrice, completePrice, imagePath)
+
             if (clothName.isEmpty() || clothDescription.isEmpty()){
                 Toast.makeText(requireContext(), "Name and description can not be empty",
                 Toast.LENGTH_SHORT).show()
@@ -210,6 +210,7 @@ class AddFemaleClothsFragment : Fragment() {
         root.shirtImage2.visibility = View.GONE
         root.shirtImage3.visibility = View.GONE
         root.shirtImage4.visibility = View.GONE
+        root.shirtImage1.isDrawingCacheEnabled = false
     }
 
     private fun permissionIfNeeded(): Boolean {

@@ -212,5 +212,25 @@ class FirebaseSource {
         }
     }
 
+    fun uploadMaleClothImage(imageBytes: List<ByteArray>,
+                               onSuccess: (imagePath: ArrayList<String>) -> Unit){
+
+        val ref = currentUserStorageRef.child(
+            "maleCloths")
+
+        for (uploadCount in imageBytes.indices) {
+            val individualImage = imageBytes[uploadCount]
+            val imageName = ref.child("Images" + UUID.randomUUID().toString())
+
+            imageName.putBytes(individualImage)
+                .addOnSuccessListener {
+                    imageName.downloadUrl.addOnSuccessListener {uri ->
+                        val url = java.lang.String.valueOf(uri)
+                        onSuccess(arrayListOf(url))
+                    }
+                }
+        }
+    }
+
     fun pathToReference(path: String) = storageInstance.getReference(path)
     }
