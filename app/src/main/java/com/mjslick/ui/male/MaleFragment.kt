@@ -13,9 +13,6 @@ import kotlinx.android.synthetic.main.male_fragment.view.*
 
 class MaleFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MaleFragment()
-    }
 
     private lateinit var viewModel: MaleViewModel
 
@@ -25,16 +22,13 @@ class MaleFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.male_fragment, container, false)
 
+
+        viewModel = ViewModelProvider(this).get(MaleViewModel::class.java)
+
         root.add_male_wear.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_addMaleCloth)
         }
         return root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MaleViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

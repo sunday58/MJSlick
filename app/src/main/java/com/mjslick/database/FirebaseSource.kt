@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mjslick.model.LadiesWear
@@ -172,22 +171,22 @@ class FirebaseSource {
 
     }
 
-    fun addFemaleClothListener(context: Context,
-                                onListen: (List<LadiesWear>) -> Unit): ListenerRegistration{
-        return currentUserDocRef
+    fun getFemaleCloths(myCallback: (List<LadiesWear>) -> Unit) {
+        currentUserDocRef
             .collection(Constants.FEMALE_CLOTH_COLLECTION)
             .orderBy(Constants.CLOTH_TYPE)
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    Log.e("Firestore", "female cloths listener error", error)
-                    return@addSnapshotListener
-                }
-                val items = mutableListOf<LadiesWear>()
-                value!!.documents.forEach {
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    val list: ArrayList<LadiesWear> = ArrayList()
+                    for (document in task.result!!) {
+                        val wears = document.toObject(LadiesWear::class.java)
+                        list.add(wears)
 
-                    //TODO("add item to adapter")
+                    }
+                    myCallback(list)
                 }
-                onListen(items)
+
             }
     }
 

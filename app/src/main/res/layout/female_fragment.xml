@@ -48,11 +48,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/female_wear_recyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/female_search_placeHolder"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fitsSystemWindows="true"
         android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
