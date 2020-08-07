@@ -35,7 +35,6 @@ class FemaleClothsAdapter(private val clothList: List<LadiesWear>)
         holder.femaleWearRating.rating = 4F
     }
 
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
          val femaleWearTitle: TextView = itemView.findViewById(R.id.female_wear_title)
          val femaleWearRating: RatingBar = itemView.findViewById(R.id.female_wear_rating)
