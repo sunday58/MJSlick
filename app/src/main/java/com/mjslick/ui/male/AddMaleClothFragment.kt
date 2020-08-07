@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +18,17 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.mjslick.R
+import com.mjslick.model.MaleWear
 import com.mjslick.ui.factory.AddMaleClothFactory
 import com.mjslick.utility.Constants
 import kotlinx.android.synthetic.main.fragment_add_male_cloth.view.*
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class AddMaleClothFragment : Fragment() {
 
@@ -32,10 +36,6 @@ class AddMaleClothFragment : Fragment() {
     private lateinit var selectedImageBytes: ByteArray
     private lateinit var viewModel: AddMaleClothViewModel
     private lateinit var root: View
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -111,6 +111,15 @@ class AddMaleClothFragment : Fragment() {
                                 Toast.LENGTH_LONG).show()
                             clearImage()
                         }
+                        val clothsImages = listOf(selectedImageBytes)
+                        if (root.maleShirtImage1 != null){
+                            viewModel.uploadMaleClothImage(clothsImages){imagePath ->
+                                addMaleCloth(imagePath)
+                            }
+                        }else{
+                            Toast.makeText(requireContext(), "Please select image",
+                            Toast.LENGTH_SHORT).show()
+                        }
 
                     }
                 }else if (data.data != null){
@@ -123,9 +132,44 @@ class AddMaleClothFragment : Fragment() {
                     selectedImageBytes = singleOutputStream.toByteArray()
                     loadImage(selectedImageBytes, root.maleShirtImage1)
                     root.maleShirtImage1.visibility = View.VISIBLE
+
+                    val clothsImages = listOf(selectedImageBytes)
+                    if (root.maleShirtImage1 != null){
+                        viewModel.uploadMaleClothImage(clothsImages){imagePath ->
+                            addMaleCloth(imagePath)
+                        }
+                    }else{
+                        Toast.makeText(requireContext(), "Please select image",
+                            Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }
+        }
+    }
+
+    private fun addMaleCloth(imagePath: List<String>) {
+        root.saveMaleCloths.setOnClickListener {
+            val clothName = Objects.requireNonNull(root.male_cloth_name.text.toString())
+            val clothType = root.select_male_cloth.selectedItem.toString()
+            val clothDescription = root.male_cloth_description.text.toString()
+            val topPrice = root.male_top_price.text.toString()
+            val trouserPrice = root.male_trouser_price.text.toString()
+            val completePrice = root.male_complete_price.text.toString()
+
+            val  maleWear = MaleWear(clothName, clothType, clothDescription,
+                topPrice, trouserPrice, completePrice, imagePath)
+
+            if (TextUtils.isEmpty(clothName) || TextUtils.isEmpty(clothDescription)){
+                Toast.makeText(requireContext(), "Name and description Can't be empty",
+                Toast.LENGTH_SHORT).show()
+            }else{
+                viewModel.addMaleCloth(maleWear)
+                Toast.makeText(requireContext(), "cloths added successfully",
+                Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(root).navigate(R.id.navigation_male)
+            }
+
         }
     }
 

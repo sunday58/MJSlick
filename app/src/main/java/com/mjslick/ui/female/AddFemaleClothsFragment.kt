@@ -210,7 +210,6 @@ class AddFemaleClothsFragment : Fragment() {
         root.shirtImage2.visibility = View.GONE
         root.shirtImage3.visibility = View.GONE
         root.shirtImage4.visibility = View.GONE
-        root.shirtImage1.isDrawingCacheEnabled = false
     }
 
     private fun permissionIfNeeded(): Boolean {
