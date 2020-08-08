@@ -9,12 +9,16 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mjslick.R
+import com.mjslick.ui.factory.GetFemaleClothFactory
+import com.mjslick.ui.factory.GetMaleClothFactory
+import com.mjslick.ui.female.FemaleViewModel
 import kotlinx.android.synthetic.main.male_fragment.view.*
 
 class MaleFragment : Fragment() {
 
 
     private lateinit var viewModel: MaleViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +27,9 @@ class MaleFragment : Fragment() {
         val root = inflater.inflate(R.layout.male_fragment, container, false)
 
 
-        viewModel = ViewModelProvider(this).get(MaleViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = GetMaleClothFactory(application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MaleViewModel::class.java)
 
         root.add_male_wear.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_addMaleCloth)

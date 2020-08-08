@@ -1,6 +1,5 @@
 package com.mjslick.database
 
-import android.content.Context
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -34,13 +33,11 @@ class FirebaseSource {
 
     private val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document(
-            "users/${FirebaseAuth.getInstance().currentUser?.email
-            ?: throw NullPointerException("UID is null.")}")
+            "users/MJSlick")
 
     private val currentUserStorageRef: StorageReference
         get() = storageInstance.reference
-            .child(FirebaseAuth.getInstance().currentUser?.uid ?:
-            throw NullPointerException("UID is null"))
+            .child("MJSlick")
 
 
     fun register(email: String, password: String, user: User){
@@ -187,6 +184,23 @@ class FirebaseSource {
                     myCallback(list)
                 }
 
+            }
+    }
+
+    fun getMaleCloths(myCallback: (List<MaleWear>) -> Unit){
+        currentUserDocRef
+            .collection(Constants.MALE_CLOTH_COLLECTION)
+            .orderBy(Constants.CLOTH_TYPE)
+            .get()
+            .addOnCompleteListener {task ->
+                if (task.isSuccessful){
+                    val list: ArrayList<MaleWear> = ArrayList()
+                    for (document in task.result!!){
+                        val wears = document.toObject(MaleWear::class.java)
+                        list.add(wears)
+                    }
+                    myCallback(list)
+                }
             }
     }
 

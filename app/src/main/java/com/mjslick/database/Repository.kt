@@ -30,5 +30,6 @@ class Repository(private val firebaseSource: FirebaseSource) {
                 = firebaseSource.uploadMaleClothImage(imageBytes, onSuccess)
 
     fun getFemaleCloths(myCallback: (List<LadiesWear>) -> Unit) = firebaseSource.getFemaleCloths(myCallback)
+    fun getMaleCloths(myCallback: (List<MaleWear>) -> Unit) = firebaseSource.getMaleCloths(myCallback)
 
 }
