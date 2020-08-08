@@ -1,5 +1,7 @@
 package com.mjslick.model
 
+import java.io.Serializable
+
 data class LadiesWear(
     val clothName: String,
     val clothType: String,
@@ -9,7 +11,7 @@ data class LadiesWear(
     val completePrice: String,
     val clothImages: ArrayList<String>
 
-) {
+): Serializable {
     constructor(): this("", "", "", "",
     "", "", arrayListOf())
 }

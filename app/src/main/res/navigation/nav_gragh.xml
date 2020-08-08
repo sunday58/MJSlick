@@ -53,4 +53,10 @@
         android:label=""
         tools:layout="@layout/fragment_add_male_cloth"/>
 
+    <fragment
+        android:id="@+id/navigation_detail"
+        android:name="com.mjslick.ui.detail.DetailClothFragment"
+        android:label=""
+        tools:layout="@layout/fragment_detail_cloth"/>
+
 </navigation>
