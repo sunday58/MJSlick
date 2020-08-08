@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mjslick.R
 import com.mjslick.model.LadiesWear
@@ -39,6 +40,12 @@ class DetailClothFragment : Fragment() {
             root.detail_top_price.text = ladiesWear.topPrice
             root.detail_trouser_price.text = ladiesWear.trouserPrice
             root.detail_complete_price.text = ladiesWear.completePrice
+
+            root.detail_image.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("femaleImage", ladiesWear.clothImages[0])
+                Navigation.findNavController(root).navigate(R.id.navigation_zoom)
+            }
 
         }else{
             maleWear = requireArguments().getSerializable("male") as MaleWear

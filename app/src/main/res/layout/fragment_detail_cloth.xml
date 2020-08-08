@@ -22,7 +22,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
             app:siShape="@drawable/image_shape"
-            app:siSquare="true"
             android:src="@drawable/female_wear"/>
 
         <com.google.android.material.card.MaterialCardView

@@ -59,4 +59,11 @@
         android:label=""
         tools:layout="@layout/fragment_detail_cloth"/>
 
+    <fragment
+        android:id="@+id/navigation_zoom"
+        android:name="com.mjslick.ui.detail.ZoomImageFragment"
+        android:label=""
+        tools:layout="@layout/fragment_zoom_image"/>
+
+
 </navigation>

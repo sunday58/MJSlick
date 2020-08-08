@@ -66,7 +66,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_register,
                 R.id.navigation_addFemaleCloth,
                 R.id.navigation_addMaleCloth,
-                R.id.navigation_detail -> {
+                R.id.navigation_detail,
+                R.id.navigation_zoom -> {
                     hideCustomToolBar()
                     hideBottomNav()
                     hideFloatingButton()
