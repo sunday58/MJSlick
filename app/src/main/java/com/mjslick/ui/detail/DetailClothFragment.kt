@@ -34,6 +34,7 @@ class DetailClothFragment : Fragment() {
             ladiesWear = requireArguments().getSerializable("ladies") as LadiesWear
 
             getImage(ladiesWear.clothImages[0])
+            root.wear_detailTitle.text = ladiesWear.clothName
             root.femaleWearDescription.text = ladiesWear.clothDescription
             root.detail_top_price.text = ladiesWear.topPrice
             root.detail_trouser_price.text = ladiesWear.trouserPrice
@@ -42,6 +43,7 @@ class DetailClothFragment : Fragment() {
         }else{
             maleWear = requireArguments().getSerializable("male") as MaleWear
             getImage(maleWear.clothImages[0])
+            root    .wear_detailTitle.text = maleWear.clothName
             root.femaleWearDescription.text = maleWear.clothDescription
             root.detail_top_price.text = maleWear.topPrice
             root.detail_trouser_price.text = maleWear.trouserPrice
