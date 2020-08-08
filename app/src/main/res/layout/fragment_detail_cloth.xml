@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-            android:id="@+id/meal_image"
+            android:id="@+id/detail_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:layout_constraintEnd_toEndOf="parent"

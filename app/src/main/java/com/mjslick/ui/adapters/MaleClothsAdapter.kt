@@ -1,5 +1,6 @@
 package com.mjslick.ui.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mjslick.R
@@ -32,6 +34,14 @@ class MaleClothsAdapter(private val clothList: List<MaleWear>)
         holder.maleWearTitle.text = data.clothName
         holder.maleWearRating.numStars = 5
         holder.maleWearRating.rating = 4F
+
+       holder.itemView.setOnClickListener {
+            Toast.makeText(holder.itemView.context, holder.adapterPosition.toString(),
+                Toast.LENGTH_SHORT).show()
+           val bundle = Bundle()
+           bundle.putSerializable("male", data)
+           Navigation.findNavController(holder.itemView).navigate(R.id.navigation_detail, bundle)
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -39,12 +49,6 @@ class MaleClothsAdapter(private val clothList: List<MaleWear>)
          val maleWearRating: RatingBar = itemView.findViewById(R.id.male_wear_rating)
         private val maleWearImage: ImageView = itemView.findViewById(R.id.male_wear_image)
 
-        init {
-            itemView.setOnClickListener {
-                Toast.makeText(itemView.context, adapterPosition.toString(),
-                    Toast.LENGTH_SHORT).show()
-            }
-        }
 
         fun loadImage(image: String) {
             Glide.with(itemView.context)

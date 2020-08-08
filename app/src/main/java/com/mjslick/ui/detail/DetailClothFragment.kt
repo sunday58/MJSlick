@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.mjslick.R
 import com.mjslick.model.LadiesWear
+import com.mjslick.model.MaleWear
 import kotlinx.android.synthetic.main.fragment_detail_cloth.view.*
 
 
@@ -15,6 +16,7 @@ class DetailClothFragment : Fragment() {
 
     private lateinit var root: View
     private lateinit var ladiesWear: LadiesWear
+    private lateinit var maleWear: MaleWear
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,14 @@ class DetailClothFragment : Fragment() {
             root.detail_top_price.text = ladiesWear.topPrice
             root.detail_trouser_price.text = ladiesWear.trouserPrice
             root.detail_complete_price.text = ladiesWear.completePrice
+
+        }else{
+            maleWear = requireArguments().getSerializable("male") as MaleWear
+            getImage(maleWear.clothImages[0])
+            root.femaleWearDescription.text = maleWear.clothDescription
+            root.detail_top_price.text = maleWear.topPrice
+            root.detail_trouser_price.text = maleWear.trouserPrice
+            root.detail_complete_price.text = maleWear.completePrice
         }
 
         return root
@@ -44,7 +54,7 @@ class DetailClothFragment : Fragment() {
     private fun getImage(url: String){
         Glide.with(requireContext())
             .load(url)
-            .into(root.meal_image)
+            .into(root.detail_image)
     }
 
 }
