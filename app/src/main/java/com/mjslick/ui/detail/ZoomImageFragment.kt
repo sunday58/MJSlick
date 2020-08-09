@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.MaterialToolbar
 import com.mjslick.R
 import com.mjslick.model.LadiesWear
 import com.mjslick.model.MaleWear
@@ -34,7 +36,7 @@ class ZoomImageFragment : Fragment() {
             maleImage = requireArguments().getString("man") as String
             getZoomImage(maleImage)
         }
-
+        navigateBack(root.zoom_image_toolbar)
         return root
     }
 
@@ -42,5 +44,10 @@ class ZoomImageFragment : Fragment() {
         Glide.with(requireContext())
             .load(url)
             .into(root.image_zoom)
+    }
+    private fun navigateBack(toolbar: MaterialToolbar){
+        toolbar.setOnClickListener {
+            Navigation.findNavController(root).navigateUp()
+        }
     }
 }
