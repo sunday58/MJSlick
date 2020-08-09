@@ -23,4 +23,15 @@ object Constants {
     const val TROUSER_PRICE = "trouserPrice"
     const val COMPLETE_PRICE = "completePrice"
     const val CLOTH_IMAGES = "clothImages"
+
+    //phone number
+    const val PHONE_NUMBER = "07060764670"
+    //email
+    const val EMAIL_ADDRESS = "mjslick@gmail.com"
+    //for facebook
+    const val FACEBOOK_URL = "https://www.facebook.com/sustain.env.39"
+    const val FACEBOOK_PAGE_ID = "100047592309213"
+    //for twitter
+    const val TWITTER_URL = "twitter://user?screen_name=sustain_our"
+    const val TWITTER_WEB_URL ="https://twitter.com/#!/sustain_our"
 }

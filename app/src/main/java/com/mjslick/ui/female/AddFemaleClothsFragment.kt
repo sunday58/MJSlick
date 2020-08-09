@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -15,30 +14,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
-import com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
 import com.mjslick.R
 import com.mjslick.model.LadiesWear
-import com.mjslick.ui.auth.logIn.LogInViewModel
 import com.mjslick.ui.factory.AddFemaleClothFactory
-import com.mjslick.ui.factory.LoginViewModelFactory
 import com.mjslick.utility.Constants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
 import com.mjslick.utility.Constants.OPEN_MEDIA_PICKER
+import com.mjslick.utility.Network.isOnline
 import kotlinx.android.synthetic.main.fragment_add_female_cloths.view.*
 import java.io.ByteArrayOutputStream
 import java.util.*
-import kotlin.collections.ArrayList
 
 class AddFemaleClothsFragment : Fragment() {
 
@@ -48,10 +40,6 @@ class AddFemaleClothsFragment : Fragment() {
     private lateinit var viewModel: AddFemaleClothViewModel
 
     private lateinit var root: View
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -171,27 +159,37 @@ class AddFemaleClothsFragment : Fragment() {
    private fun addFemaleCloth(imagePath: ArrayList<String>) {
        Log.d("clothImagePaths", imagePath.toString())
 
-        root.saveFemaleCloths.setOnClickListener {
-            val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
-            val clothType = root.select_female_cloth.selectedItem.toString()
-            val clothDescription = root.female_cloth_description.text.toString()
-            val topPrice = root.female_top_price.text.toString()
-            val trouserPrice = root.female_trouser_price.text.toString()
-            val completePrice = root.female_complete_price.text.toString()
+       root.saveFemaleCloths.setOnClickListener {
+           if (isOnline(requireContext())){
+           val clothName = Objects.requireNonNull(root.female_cloth_name.text.toString())
+           val clothType = root.select_female_cloth.selectedItem.toString()
+           val clothDescription = root.female_cloth_description.text.toString()
+           val topPrice = root.female_top_price.text.toString()
+           val trouserPrice = root.female_trouser_price.text.toString()
+           val completePrice = root.female_complete_price.text.toString()
 
-            val femaleWear = LadiesWear(clothName, clothType, clothDescription,
-                topPrice, trouserPrice, completePrice, imagePath)
+           val femaleWear = LadiesWear(
+               clothName, clothType, clothDescription,
+               topPrice, trouserPrice, completePrice, imagePath
+           )
 
-            if (clothName.isEmpty() || clothDescription.isEmpty()){
-                Toast.makeText(requireContext(), "Name and description can not be empty",
-                Toast.LENGTH_SHORT).show()
-            }else {
-                viewModel.addFemaleCloth(femaleWear)
-                Toast.makeText(requireContext(), "cloths added successfully",
-                    Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(root).navigate(R.id.navigation_female)
-            }
-        }
+           if (clothName.isEmpty() || clothDescription.isEmpty()) {
+               Toast.makeText(
+                   requireContext(), "Name and description can not be empty",
+                   Toast.LENGTH_SHORT
+               ).show()
+           } else {
+               viewModel.addFemaleCloth(femaleWear)
+               Toast.makeText(
+                   requireContext(), "cloths added successfully",
+                   Toast.LENGTH_SHORT
+               ).show()
+               Navigation.findNavController(root).navigate(R.id.navigation_female)
+           }
+       }else{
+               Toast.makeText(requireContext(), "check Network", Toast.LENGTH_SHORT).show()
+           }
+       }
    }
 
     private fun loadImage(imageByte : ByteArray, imageView: ImageView){

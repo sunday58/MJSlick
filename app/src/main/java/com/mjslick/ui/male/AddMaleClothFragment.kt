@@ -26,6 +26,7 @@ import com.mjslick.R
 import com.mjslick.model.MaleWear
 import com.mjslick.ui.factory.AddMaleClothFactory
 import com.mjslick.utility.Constants
+import com.mjslick.utility.Network
 import kotlinx.android.synthetic.main.fragment_add_male_cloth.view.*
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -150,6 +151,7 @@ class AddMaleClothFragment : Fragment() {
 
     private fun addMaleCloth(imagePath: List<String>) {
         root.saveMaleCloths.setOnClickListener {
+            if (Network.isOnline(requireContext())){
             val clothName = Objects.requireNonNull(root.male_cloth_name.text.toString())
             val clothType = root.select_male_cloth.selectedItem.toString()
             val clothDescription = root.male_cloth_description.text.toString()
@@ -157,17 +159,26 @@ class AddMaleClothFragment : Fragment() {
             val trouserPrice = root.male_trouser_price.text.toString()
             val completePrice = root.male_complete_price.text.toString()
 
-            val  maleWear = MaleWear(clothName, clothType, clothDescription,
-                topPrice, trouserPrice, completePrice, imagePath)
+            val maleWear = MaleWear(
+                clothName, clothType, clothDescription,
+                topPrice, trouserPrice, completePrice, imagePath
+            )
 
-            if (TextUtils.isEmpty(clothName) || TextUtils.isEmpty(clothDescription)){
-                Toast.makeText(requireContext(), "Name and description Can't be empty",
-                Toast.LENGTH_SHORT).show()
-            }else{
+            if (TextUtils.isEmpty(clothName) || TextUtils.isEmpty(clothDescription)) {
+                Toast.makeText(
+                    requireContext(), "Name and description Can't be empty",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 viewModel.addMaleCloth(maleWear)
-                Toast.makeText(requireContext(), "cloths added successfully",
-                Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(), "cloths added successfully",
+                    Toast.LENGTH_SHORT
+                ).show()
                 Navigation.findNavController(root).navigate(R.id.navigation_male)
+            }
+        }else{
+                Toast.makeText(requireContext(), "Check Network", Toast.LENGTH_SHORT).show()
             }
 
         }
