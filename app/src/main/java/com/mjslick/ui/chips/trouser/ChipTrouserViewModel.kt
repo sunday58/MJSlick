@@ -1,11 +1,11 @@
-package com.mjslick.ui.chips.all
+package com.mjslick.ui.chips.trouser
 
 import androidx.lifecycle.ViewModel
 import com.mjslick.database.FirebaseSource
 import com.mjslick.database.Repository
 import com.mjslick.model.MaleWear
 
-class ChipsAllViewModel: ViewModel() {
+class ChipTrouserViewModel : ViewModel() {
 
     private var repository: Repository
     private var firebaseSource: FirebaseSource = FirebaseSource()
@@ -13,7 +13,5 @@ class ChipsAllViewModel: ViewModel() {
     init {
         repository = Repository(firebaseSource)
     }
-
-    fun getMaleCloths(myCallback: (List<MaleWear>) -> Unit) = repository.getMaleCloths(myCallback)
-
+    fun getMaleTrousers(myCallback: (List<MaleWear>) -> Unit) = repository.getMaleTrousers(myCallback)
 }

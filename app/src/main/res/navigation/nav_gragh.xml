@@ -73,14 +73,14 @@
 
     <fragment
         android:id="@+id/navigation_chipsTrouser"
-        android:name="com.mjslick.ui.chips.trousers.ChipsTrouserFragment"
+        android:name="com.mjslick.ui.chips.trouser.ChipTrouserFragment"
         android:label=""
-        tools:layout="@layout/chips_trouser_fragment"/>
+        tools:layout="@layout/chip_trouser_fragment"/>
 
     <fragment
         android:id="@+id/navigation_chipsShirt"
-        android:name="com.mjslick.ui.chips.shirts.ChipsShirtsFragment"
+        android:name="com.mjslick.ui.chips.shirt.ChipShirtFragment"
         android:label=""
-        tools:layout="@layout/chips_shirts_fragment"/>
+        tools:layout="@layout/chip_shirt_fragment"/>
 
 </navigation>

@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.chips.all.ChipsAllFragment">
+    tools:context=".ui.chips.trouser.ChipTrouserFragment">
+
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/all_toolbar"
+        android:id="@+id/trouser_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
@@ -20,34 +21,34 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:layout_below="@id/all_toolbar"
+        android:layout_below="@id/trouser_toolbar"
         android:paddingStart="24dp">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/all_detail"
+            android:id="@+id/allTrouserDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="All"
-            app:chipBackgroundColor="@color/colorPrimary"
-            app:chipIconEnabled="true"
-            android:textColor="@color/white"
             app:chipCornerRadius="45dp"
             app:chipEndPadding="12dp"
             app:chipStartPadding="12dp" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/trousers_detail"
+            android:id="@+id/trouserDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Trousers"
+            app:chipBackgroundColor="@color/colorPrimary"
+            app:chipIconEnabled="true"
+            android:textColor="@color/white"
             app:chipCornerRadius="45dp"
             app:chipEndPadding="8dp"
             app:chipStartPadding="8dp" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/shirts_detail"
+            android:id="@+id/shirtTrouserDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -59,7 +60,7 @@
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chips_all_recyclerView"
+        android:id="@+id/chips_trouser_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/chip_group"
@@ -71,6 +72,5 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/male_wear_list_item" />
-
 
 </RelativeLayout>

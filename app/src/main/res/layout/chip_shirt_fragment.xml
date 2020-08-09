@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.chips.shirts.ChipsShirtsFragment">
+    tools:context=".ui.chips.shirt.ChipShirtFragment">
 
     <TextView
         android:layout_width="match_parent"
