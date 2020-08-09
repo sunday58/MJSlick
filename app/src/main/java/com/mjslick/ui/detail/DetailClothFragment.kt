@@ -41,6 +41,48 @@ class DetailClothFragment : Fragment() {
             root.detail_trouser_price.text = ladiesWear.trouserPrice
             root.detail_complete_price.text = ladiesWear.completePrice
 
+            //check null contents
+            when {
+                ladiesWear.topPrice.isEmpty() && ladiesWear.trouserPrice.isEmpty() -> {
+                    root.detail_top_price.visibility = View.GONE
+                    root.top_price.visibility = View.GONE
+                    root.trouser.visibility = View.GONE
+                    root.detail_trouser_price.visibility = View.GONE
+                }
+                ladiesWear.topPrice.isEmpty() && ladiesWear.completePrice.isEmpty() -> {
+                    root.detail_top_price.visibility = View.GONE
+                    root.top_price.visibility = View.GONE
+                    root.complete.visibility = View.GONE
+                    root.detail_complete_price.visibility = View.GONE
+                }
+                ladiesWear.trouserPrice.isEmpty() &&  ladiesWear.completePrice.isEmpty() -> {
+                    root.trouser.visibility = View.GONE
+                    root.detail_trouser_price.visibility = View.GONE
+                    root.complete.visibility = View.GONE
+                    root.detail_complete_price.visibility = View.GONE
+                }
+                ladiesWear.topPrice.isEmpty() -> {
+                    root.detail_top_price.visibility = View.GONE
+                    root.top_price.visibility = View.GONE
+                }
+                ladiesWear.trouserPrice.isEmpty() -> {
+                    root.trouser.visibility = View.GONE
+                    root.detail_trouser_price.visibility = View.GONE
+                }
+                ladiesWear.completePrice.isEmpty() -> {
+                    root.complete.visibility = View.GONE
+                    root.detail_complete_price.visibility = View.GONE
+                }
+                else -> {
+                    root.detail_top_price.visibility = View.VISIBLE
+                    root.top_price.visibility = View.VISIBLE
+                    root.trouser.visibility = View.VISIBLE
+                    root.detail_trouser_price.visibility = View.VISIBLE
+                    root.complete.visibility = View.VISIBLE
+                    root.detail_complete_price.visibility = View.VISIBLE
+                }
+            }
+
             root.detail_image.setOnClickListener {
                 val zoomImageFragment = ZoomImageFragment()
                 val bundle = Bundle()
@@ -57,6 +99,48 @@ class DetailClothFragment : Fragment() {
             root.detail_top_price.text = maleWear.topPrice
             root.detail_trouser_price.text = maleWear.trouserPrice
             root.detail_complete_price.text = maleWear.completePrice
+
+            //check null contents
+            when {
+                maleWear.topPrice.isEmpty() && maleWear.trouserPrice.isEmpty() -> {
+                    root.detail_top_price.visibility = View.GONE
+                    root.top_price.visibility = View.GONE
+                    root.trouser.visibility = View.GONE
+                    root.detail_trouser_price.visibility = View.GONE
+                }
+                maleWear.topPrice.isEmpty() && maleWear.completePrice.isEmpty() -> {
+                    root.detail_top_price.visibility = View.GONE
+                    root.top_price.visibility = View.GONE
+                    root.complete.visibility = View.GONE
+                    root.detail_complete_price.visibility = View.GONE
+                }
+                maleWear.trouserPrice.isEmpty() &&  maleWear.completePrice.isEmpty() -> {
+                    root.trouser.visibility = View.GONE
+                    root.detail_trouser_price.visibility = View.GONE
+                    root.complete.visibility = View.GONE
+                    root.detail_complete_price.visibility = View.GONE
+                }
+                maleWear.topPrice.isEmpty() -> {
+                    root.detail_top_price.visibility = View.GONE
+                    root.top_price.visibility = View.GONE
+                }
+                maleWear.trouserPrice.isEmpty() -> {
+                    root.trouser.visibility = View.GONE
+                    root.detail_trouser_price.visibility = View.GONE
+                }
+                maleWear.completePrice.isEmpty() -> {
+                    root.complete.visibility = View.GONE
+                    root.detail_complete_price.visibility = View.GONE
+                }
+                else -> {
+                    root.detail_top_price.visibility = View.VISIBLE
+                    root.top_price.visibility = View.VISIBLE
+                    root.trouser.visibility = View.VISIBLE
+                    root.detail_trouser_price.visibility = View.VISIBLE
+                    root.complete.visibility = View.VISIBLE
+                    root.detail_complete_price.visibility = View.VISIBLE
+                }
+            }
 
             root.detail_image.setOnClickListener {
                 val zoomImageFragment = ZoomImageFragment()
