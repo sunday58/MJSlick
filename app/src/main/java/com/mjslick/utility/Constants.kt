@@ -34,4 +34,5 @@ object Constants {
     //for twitter
     const val TWITTER_URL = "twitter://user?screen_name=sustain_our"
     const val TWITTER_WEB_URL ="https://twitter.com/#!/sustain_our"
+    const val PLAYSTORE_ACCOUNT = "https://play.google.com/store/apps/details?id=com.project.ksih_android"
 }

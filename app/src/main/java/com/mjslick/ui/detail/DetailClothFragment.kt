@@ -42,9 +42,11 @@ class DetailClothFragment : Fragment() {
             root.detail_complete_price.text = ladiesWear.completePrice
 
             root.detail_image.setOnClickListener {
+                val zoomImageFragment = ZoomImageFragment()
                 val bundle = Bundle()
-                bundle.putString("femaleImage", ladiesWear.clothImages[0])
-                Navigation.findNavController(root).navigate(R.id.navigation_zoom)
+                bundle.putString("woman", ladiesWear.clothImages[0])
+                zoomImageFragment.arguments = bundle
+                Navigation.findNavController(root).navigate(R.id.navigation_zoom, bundle)
             }
 
         }else{
@@ -57,9 +59,11 @@ class DetailClothFragment : Fragment() {
             root.detail_complete_price.text = maleWear.completePrice
 
             root.detail_image.setOnClickListener {
+                val zoomImageFragment = ZoomImageFragment()
                 val bundle = Bundle()
-                bundle.putString("maleImage", maleWear.clothImages[0])
-                Navigation.findNavController(root).navigate(R.id.navigation_zoom)
+                bundle.putString("man", maleWear.clothImages[0])
+                zoomImageFragment.arguments = bundle
+                Navigation.findNavController(root).navigate(R.id.navigation_zoom, bundle)
             }
         }
         call()
