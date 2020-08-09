@@ -33,6 +33,7 @@ class MaleFragment : Fragment() {
         root.add_male_wear.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_addMaleCloth)
         }
+        setChipSelection()
         displayCloths()
         return root
     }
@@ -44,6 +45,18 @@ class MaleFragment : Fragment() {
             root.male_wear_recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
 
+        }
+    }
+
+    private fun setChipSelection(){
+        root.all.setOnClickListener {
+            Navigation.findNavController(root).navigate(R.id.navigation_chipsAll)
+        }
+        root.trousers.setOnClickListener {
+            Navigation.findNavController(root).navigate(R.id.navigation_chipsTrouser)
+        }
+        root.shirts.setOnClickListener {
+            Navigation.findNavController(root).navigate(R.id.navigation_chipsShirt)
         }
     }
 

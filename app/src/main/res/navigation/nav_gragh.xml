@@ -65,5 +65,22 @@
         android:label=""
         tools:layout="@layout/fragment_zoom_image"/>
 
+    <fragment
+        android:id="@+id/navigation_chipsAll"
+        android:name="com.mjslick.ui.chips.all.ChipsAllFragment"
+        android:label=""
+        tools:layout="@layout/fragment_chips_all"/>
+
+    <fragment
+        android:id="@+id/navigation_chipsTrouser"
+        android:name="com.mjslick.ui.chips.trousers.ChipsTrouserFragment"
+        android:label=""
+        tools:layout="@layout/chips_trouser_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_chipsShirt"
+        android:name="com.mjslick.ui.chips.shirts.ChipsShirtsFragment"
+        android:label=""
+        tools:layout="@layout/chips_shirts_fragment"/>
 
 </navigation>
