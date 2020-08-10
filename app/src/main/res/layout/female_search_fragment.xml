@@ -7,16 +7,30 @@
     tools:context=".ui.search.FemaleSearchFragment">
 
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/femaleSearch"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            android:elevation="8dp"
-            app:closeIcon="@drawable/ic_close"
-            app:queryHint="Female wears"
-            android:theme="@style/ThemeOverlay.SearchView"/>
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/femaleSearch"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:queryHint="type here..."
+        app:showAsAction="always"
+        android:inputType="text"
+        app:iconifiedByDefault="false"
+        android:focusable="true"
+        android:theme="@style/ThemeOverlay.SearchView"/>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/female_wear_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/femaleSearch"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fitsSystemWindows="true"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/female_wear_list_item" />
 
 </RelativeLayout>

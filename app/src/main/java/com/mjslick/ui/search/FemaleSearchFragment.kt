@@ -1,12 +1,16 @@
 package com.mjslick.ui.search
 
+import android.app.SearchManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mjslick.R
+import kotlinx.android.synthetic.main.female_search_fragment.view.*
 
 class FemaleSearchFragment : Fragment() {
 

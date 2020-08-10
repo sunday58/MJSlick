@@ -32,6 +32,9 @@ class FemaleFragment : Fragment() {
         root.add_female_wear.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_addFemaleCloth)
         }
+        root.female_search_placeHolder.setOnClickListener {
+            Navigation.findNavController(root).navigate(R.id.navigation_femaleSearch)
+        }
         displayCloths()
         return root
     }

@@ -3,6 +3,7 @@ package com.mjslick
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
@@ -123,11 +124,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideCustomToolBar() {
-       toolBar.isVisible = false
+       toolBar.visibility = View.GONE
     }
 
     private fun showCustomToolBar() {
-        toolBar.isVisible = true
+        toolBar.visibility = View.VISIBLE
     }
 
     private fun hideBottomNav(){
