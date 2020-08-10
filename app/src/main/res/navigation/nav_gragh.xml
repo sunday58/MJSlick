@@ -83,4 +83,10 @@
         android:label=""
         tools:layout="@layout/chip_shirt_fragment"/>
 
+    <fragment
+        android:id="@+id/navigation_femaleSearch"
+        android:name="com.mjslick.ui.search.FemaleSearchFragment"
+        android:label=""
+        tools:layout="@layout/female_search_fragment"/>
+
 </navigation>
