@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.search.MaleSearchFragment">
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/maleSearch"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:queryHint="type here..."
+        app:showAsAction="always"
+        android:inputType="textCapSentences|textAutoComplete"
+        app:iconifiedByDefault="false"
+        android:focusable="true"
+        android:theme="@style/ThemeOverlay.SearchView"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/male_wear_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/maleSearch"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/male_wear_list_item" />
+</RelativeLayout>

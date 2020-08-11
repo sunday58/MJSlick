@@ -89,4 +89,10 @@
         android:label=""
         tools:layout="@layout/female_search_fragment"/>
 
+    <fragment
+        android:id="@+id/navigation_maleSearch"
+        android:name="com.mjslick.ui.search.MaleSearchFragment"
+        android:label=""
+        tools:layout="@layout/male_search_fragment"/>
+
 </navigation>
