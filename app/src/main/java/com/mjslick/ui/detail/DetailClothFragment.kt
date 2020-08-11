@@ -43,33 +43,33 @@ class DetailClothFragment : Fragment() {
 
             //check null contents
             when {
-                ladiesWear.topPrice.isEmpty() && ladiesWear.trouserPrice.isEmpty() -> {
+                ladiesWear.topPrice.length < 2 && ladiesWear.trouserPrice.length < 2 -> {
                     root.detail_top_price.visibility = View.GONE
                     root.top_price.visibility = View.GONE
                     root.trouser.visibility = View.GONE
                     root.detail_trouser_price.visibility = View.GONE
                 }
-                ladiesWear.topPrice.isEmpty() && ladiesWear.completePrice.isEmpty() -> {
+                ladiesWear.topPrice.length < 2 && ladiesWear.completePrice.length < 2 -> {
                     root.detail_top_price.visibility = View.GONE
                     root.top_price.visibility = View.GONE
                     root.complete.visibility = View.GONE
                     root.detail_complete_price.visibility = View.GONE
                 }
-                ladiesWear.trouserPrice.isEmpty() &&  ladiesWear.completePrice.isEmpty() -> {
+                ladiesWear.trouserPrice.length < 2 &&  ladiesWear.completePrice.length < 2 -> {
                     root.trouser.visibility = View.GONE
                     root.detail_trouser_price.visibility = View.GONE
                     root.complete.visibility = View.GONE
                     root.detail_complete_price.visibility = View.GONE
                 }
-                ladiesWear.topPrice.isEmpty() -> {
+                ladiesWear.topPrice.length < 2 -> {
                     root.detail_top_price.visibility = View.GONE
                     root.top_price.visibility = View.GONE
                 }
-                ladiesWear.trouserPrice.isEmpty() -> {
+                ladiesWear.trouserPrice.length < 2 -> {
                     root.trouser.visibility = View.GONE
                     root.detail_trouser_price.visibility = View.GONE
                 }
-                ladiesWear.completePrice.isEmpty() -> {
+                ladiesWear.completePrice.length < 2 -> {
                     root.complete.visibility = View.GONE
                     root.detail_complete_price.visibility = View.GONE
                 }
@@ -102,33 +102,33 @@ class DetailClothFragment : Fragment() {
 
             //check null contents
             when {
-                maleWear.topPrice.isEmpty() && maleWear.trouserPrice.isEmpty() -> {
+                maleWear.topPrice.length < 2 && maleWear.trouserPrice.length < 2 -> {
                     root.detail_top_price.visibility = View.GONE
                     root.top_price.visibility = View.GONE
                     root.trouser.visibility = View.GONE
                     root.detail_trouser_price.visibility = View.GONE
                 }
-                maleWear.topPrice.isEmpty() && maleWear.completePrice.isEmpty() -> {
+                maleWear.topPrice.length < 2 && maleWear.completePrice.length < 2 -> {
                     root.detail_top_price.visibility = View.GONE
                     root.top_price.visibility = View.GONE
                     root.complete.visibility = View.GONE
                     root.detail_complete_price.visibility = View.GONE
                 }
-                maleWear.trouserPrice.isEmpty() &&  maleWear.completePrice.isEmpty() -> {
+                maleWear.trouserPrice.length < 2 &&  maleWear.completePrice.length < 2 -> {
                     root.trouser.visibility = View.GONE
                     root.detail_trouser_price.visibility = View.GONE
                     root.complete.visibility = View.GONE
                     root.detail_complete_price.visibility = View.GONE
                 }
-                maleWear.topPrice.isEmpty() -> {
+                maleWear.topPrice.length < 2 -> {
                     root.detail_top_price.visibility = View.GONE
                     root.top_price.visibility = View.GONE
                 }
-                maleWear.trouserPrice.isEmpty() -> {
+                maleWear.trouserPrice.length < 2 -> {
                     root.trouser.visibility = View.GONE
                     root.detail_trouser_price.visibility = View.GONE
                 }
-                maleWear.completePrice.isEmpty() -> {
+                maleWear.completePrice.length < 2 -> {
                     root.complete.visibility = View.GONE
                     root.detail_complete_price.visibility = View.GONE
                 }
