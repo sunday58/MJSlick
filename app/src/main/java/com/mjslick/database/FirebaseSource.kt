@@ -20,7 +20,6 @@ import kotlin.collections.HashMap
 
 class FirebaseSource {
 
-
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
@@ -187,6 +186,25 @@ class FirebaseSource {
             }
     }
 
+    fun getFemaleSearchCloths(name: String, myCallback: (List<LadiesWear>) -> Unit){
+        currentUserDocRef
+            .collection(Constants.FEMALE_CLOTH_COLLECTION)
+            .orderBy(Constants.CLOTH_NAME)
+            .startAt(name)
+            .endAt(name + "\uf8ff")
+            .get()
+            .addOnCompleteListener {task ->
+                if (task.isSuccessful){
+                    val list: ArrayList<LadiesWear> = ArrayList()
+                    for (document in task.result!!){
+                        val wears = document.toObject(LadiesWear::class.java)
+                        list.add(wears)
+                    }
+                    myCallback(list)
+                }
+            }
+    }
+
     fun getMaleCloths(myCallback: (List<MaleWear>) -> Unit){
         currentUserDocRef
             .collection(Constants.MALE_CLOTH_COLLECTION)
@@ -237,6 +255,7 @@ class FirebaseSource {
                 }
             }
     }
+
 
     //database storage
     fun uploadFemaleClothImage(imageBytes: List<ByteArray>,

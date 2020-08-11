@@ -14,13 +14,13 @@
         android:background="@color/colorPrimaryDark"
         app:queryHint="type here..."
         app:showAsAction="always"
-        android:inputType="text"
+        android:inputType="textCapSentences|textAutoComplete"
         app:iconifiedByDefault="false"
         android:focusable="true"
         android:theme="@style/ThemeOverlay.SearchView"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/female_wear_recyclerView"
+        android:id="@+id/search_wear_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/femaleSearch"
