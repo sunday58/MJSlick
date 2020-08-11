@@ -33,6 +33,9 @@ class MaleFragment : Fragment() {
         root.add_male_wear.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_addMaleCloth)
         }
+        root.male_search_placeHolder.setOnClickListener {
+            Navigation.findNavController(root).navigate(R.id.navigation_maleSearch)
+        }
         setChipSelection()
         displayCloths()
         return root

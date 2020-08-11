@@ -256,6 +256,24 @@ class FirebaseSource {
             }
     }
 
+    fun getMaleSearchCloths(name: String, myCallback: (List<MaleWear>) -> Unit){
+        currentUserDocRef
+            .collection(Constants.MALE_CLOTH_COLLECTION)
+            .orderBy(Constants.CLOTH_NAME)
+            .startAt(name)
+            .endAt(name + "\uf8ff")
+            .get()
+            .addOnCompleteListener {task ->
+                if (task.isSuccessful){
+                    val list: ArrayList<MaleWear> = ArrayList()
+                    for (document in task.result!!){
+                        val wears = document.toObject(MaleWear::class.java)
+                        list.add(wears)
+                    }
+                    myCallback(list)
+                }
+            }
+    }
 
     //database storage
     fun uploadFemaleClothImage(imageBytes: List<ByteArray>,
