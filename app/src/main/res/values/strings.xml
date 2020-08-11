@@ -28,6 +28,7 @@
     <string name="facebook_logo">facebook logo</string>
     <string name="linkedin_logo">linkedin logo</string>
     <string name="price"><u>PRICE</u></string>
+    <string name="currency_naira">\u20A6</string>
 
     <string-array name="cloths">
         <item>Shirt</item>

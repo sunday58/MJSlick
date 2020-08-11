@@ -161,7 +161,9 @@ class AddMaleClothFragment : Fragment() {
 
             val maleWear = MaleWear(
                 clothName, clothType, clothDescription,
-                topPrice, trouserPrice, completePrice, imagePath
+               getString(R.string.currency_naira) + topPrice,
+                getString(R.string.currency_naira) + trouserPrice,
+                getString(R.string.currency_naira) + completePrice, imagePath
             )
 
             if (TextUtils.isEmpty(clothName) || TextUtils.isEmpty(clothDescription)) {
