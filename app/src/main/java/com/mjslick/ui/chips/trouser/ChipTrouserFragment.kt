@@ -56,8 +56,8 @@ class ChipTrouserFragment : Fragment() {
     }
 
     private fun swipeRefresh(){
-        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
-        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
+        root.trouserSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.trouserSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.trouserSwipeRefresh.setOnRefreshListener {
             root.trouserSwipeRefresh.isRefreshing = false
             shuffleItems()

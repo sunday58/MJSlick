@@ -57,8 +57,8 @@ class FemaleFragment : Fragment() {
     }
 
     private fun swipeRefresh(){
-        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
-        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
+        root.femaleClothSwipe.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.femaleClothSwipe.setColorSchemeResources(indicatorColor)
         root.femaleClothSwipe.setOnRefreshListener {
             root.femaleClothSwipe.isRefreshing = false
             shuffleItems()

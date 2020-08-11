@@ -54,8 +54,8 @@ class ChipShirtFragment : Fragment() {
     }
 
     private fun swipeRefresh(){
-        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
-        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
+        root.shirtSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.shirtSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.shirtSwipeRefresh.setOnRefreshListener {
             root.shirtSwipeRefresh.isRefreshing = false
             shuffleItems()

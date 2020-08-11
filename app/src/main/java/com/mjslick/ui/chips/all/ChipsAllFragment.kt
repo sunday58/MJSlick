@@ -55,8 +55,8 @@ class ChipsAllFragment : Fragment() {
         }
     }
     private fun swipeRefresh(){
-        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
-        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
+        root.allSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.allSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.allSwipeRefresh.setOnRefreshListener {
             root.allSwipeRefresh.isRefreshing = false
             shuffleItems()
