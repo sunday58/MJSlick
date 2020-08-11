@@ -13,6 +13,8 @@ import com.mjslick.R
 import com.mjslick.ui.adapters.FemaleClothsAdapter
 import com.mjslick.ui.factory.GetFemaleClothFactory
 import kotlinx.android.synthetic.main.female_fragment.view.*
+import kotlinx.android.synthetic.main.female_fragment.view.spinKit
+import kotlinx.android.synthetic.main.male_fragment.view.*
 import java.util.*
 
 class FemaleFragment : Fragment() {
@@ -20,6 +22,7 @@ class FemaleFragment : Fragment() {
     private lateinit var viewModel: FemaleViewModel
     private lateinit var adapter: FemaleClothsAdapter
     private lateinit var root: View
+    private val indicatorColor: Int = R.color.white
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,7 @@ class FemaleFragment : Fragment() {
         root.female_search_placeHolder.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_femaleSearch)
         }
+        root.spinKit.visibility = View.VISIBLE
         displayCloths()
         swipeRefresh()
         return root
@@ -48,10 +52,13 @@ class FemaleFragment : Fragment() {
             adapter = FemaleClothsAdapter(wears)
             root.female_wear_recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
+            root.spinKit.visibility = View.GONE
         }
     }
 
     private fun swipeRefresh(){
+        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.femaleClothSwipe.setOnRefreshListener {
             root.femaleClothSwipe.isRefreshing = false
             shuffleItems()

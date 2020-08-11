@@ -301,7 +301,6 @@ class FirebaseSource {
 
         val ref = currentUserStorageRef.child(
             "maleCloths")
-
         for (uploadCount in imageBytes.indices) {
             val individualImage = imageBytes[uploadCount]
             val imageName = ref.child("Images" + UUID.randomUUID().toString())

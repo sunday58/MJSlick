@@ -13,7 +13,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.mjslick.R
 import com.mjslick.ui.adapters.MaleClothsAdapter
 import kotlinx.android.synthetic.main.chip_trouser_fragment.view.*
-import kotlinx.android.synthetic.main.fragment_chips_all.view.*
+import kotlinx.android.synthetic.main.chip_trouser_fragment.view.spinKit
+import kotlinx.android.synthetic.main.male_fragment.view.*
 import java.util.*
 
 class ChipTrouserFragment : Fragment() {
@@ -21,6 +22,7 @@ class ChipTrouserFragment : Fragment() {
     private lateinit var adapter: MaleClothsAdapter
     private lateinit var viewModel: ChipTrouserViewModel
     private lateinit var root: View
+    private val indicatorColor: Int = R.color.white
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +37,7 @@ class ChipTrouserFragment : Fragment() {
         root.shirtTrouserDetail.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_chipsShirt)
         }
+        root.spinKit.visibility = View.VISIBLE
         swipeRefresh()
         displayCloths()
         navigateBack(root.trouser_toolbar)
@@ -48,10 +51,13 @@ class ChipTrouserFragment : Fragment() {
             adapter = MaleClothsAdapter(wears)
             root.chips_trouser_recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
+            root.spinKit.visibility = View.GONE
         }
     }
 
     private fun swipeRefresh(){
+        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.trouserSwipeRefresh.setOnRefreshListener {
             root.trouserSwipeRefresh.isRefreshing = false
             shuffleItems()

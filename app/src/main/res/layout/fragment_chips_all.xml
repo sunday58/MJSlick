@@ -80,5 +80,14 @@
             tools:listitem="@layout/male_wear_list_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spinKit"
+        style="@style/SpinKitView.FadingCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        app:SpinKit_Color="@color/colorPrimary"/>
 </RelativeLayout>

@@ -13,6 +13,7 @@ import com.mjslick.ui.adapters.MaleClothsAdapter
 import com.mjslick.ui.factory.GetMaleClothFactory
 import kotlinx.android.synthetic.main.male_fragment.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MaleFragment : Fragment() {
 
@@ -20,6 +21,7 @@ class MaleFragment : Fragment() {
     private lateinit var viewModel: MaleViewModel
     private lateinit var adapter: MaleClothsAdapter
     private lateinit var root: View
+    private val indicatorColor: Int = R.color.white
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,7 @@ class MaleFragment : Fragment() {
         root.male_search_placeHolder.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_maleSearch)
         }
+        root.spinKit.visibility = View.VISIBLE
         swipeRefresh()
         setChipSelection()
         displayCloths()
@@ -49,7 +52,7 @@ class MaleFragment : Fragment() {
             adapter = MaleClothsAdapter(wears)
             root.male_wear_recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
-
+            root.spinKit.visibility = View.GONE
         }
     }
 
@@ -66,8 +69,10 @@ class MaleFragment : Fragment() {
     }
 
     private fun swipeRefresh(){
+        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.maleSwipeRefresh.setOnRefreshListener{
-            root    .maleSwipeRefresh.isRefreshing = false
+            root.maleSwipeRefresh.isRefreshing = false
             shuffleItems()
         }
     }

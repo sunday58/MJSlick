@@ -12,6 +12,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.mjslick.R
 import com.mjslick.ui.adapters.MaleClothsAdapter
 import kotlinx.android.synthetic.main.fragment_chips_all.view.*
+import kotlinx.android.synthetic.main.fragment_chips_all.view.spinKit
+import kotlinx.android.synthetic.main.male_fragment.view.*
 import java.util.*
 
 class ChipsAllFragment : Fragment() {
@@ -19,6 +21,7 @@ class ChipsAllFragment : Fragment() {
     private lateinit var root: View
     private lateinit var viewModel: ChipsAllViewModel
     private lateinit var adapter: MaleClothsAdapter
+    private val indicatorColor: Int = R.color.white
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,7 @@ class ChipsAllFragment : Fragment() {
         root.shirts_detail.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_chipsShirt)
         }
+        root.spinKit.visibility = View.VISIBLE
         swipeRefresh()
         navigateBack(root.all_toolbar)
         displayCloths()
@@ -47,10 +51,12 @@ class ChipsAllFragment : Fragment() {
             adapter = MaleClothsAdapter(wears)
             root.chips_all_recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
-
+            root.spinKit.visibility = View.GONE
         }
     }
     private fun swipeRefresh(){
+        root.maleSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.colorPrimaryDark)
+        root.maleSwipeRefresh.setColorSchemeResources(indicatorColor)
         root.allSwipeRefresh.setOnRefreshListener {
             root.allSwipeRefresh.isRefreshing = false
             shuffleItems()

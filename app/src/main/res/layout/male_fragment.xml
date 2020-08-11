@@ -105,7 +105,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/frame_header"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/male_wear_recyclerView"
@@ -133,4 +134,15 @@
         app:backgroundTint="@color/colorPrimaryDark"
         app:elevation="8dp"
         app:tint="@color/white"/>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spinKit"
+        style="@style/SpinKitView.FadingCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        app:SpinKit_Color="@color/colorPrimary"/>
 </RelativeLayout>
