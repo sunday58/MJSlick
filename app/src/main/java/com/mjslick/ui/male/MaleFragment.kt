@@ -12,6 +12,7 @@ import com.mjslick.R
 import com.mjslick.ui.adapters.MaleClothsAdapter
 import com.mjslick.ui.factory.GetMaleClothFactory
 import kotlinx.android.synthetic.main.male_fragment.view.*
+import java.util.*
 
 class MaleFragment : Fragment() {
 
@@ -36,6 +37,7 @@ class MaleFragment : Fragment() {
         root.male_search_placeHolder.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_maleSearch)
         }
+        swipeRefresh()
         setChipSelection()
         displayCloths()
         return root
@@ -63,4 +65,20 @@ class MaleFragment : Fragment() {
         }
     }
 
+    private fun swipeRefresh(){
+        root.maleSwipeRefresh.setOnRefreshListener{
+            root    .maleSwipeRefresh.isRefreshing = false
+            shuffleItems()
+        }
+    }
+
+    @Suppress("JavaCollectionsStaticMethodOnImmutableList")
+    private fun shuffleItems(){
+        viewModel.getMaleCloths {wears->
+            Collections.shuffle(wears, Random(System.currentTimeMillis()))
+            adapter = MaleClothsAdapter(wears)
+            root.male_wear_recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
+    }
 }

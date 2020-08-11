@@ -12,6 +12,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.mjslick.R
 import com.mjslick.ui.adapters.MaleClothsAdapter
 import kotlinx.android.synthetic.main.fragment_chips_all.view.*
+import java.util.*
 
 class ChipsAllFragment : Fragment() {
 
@@ -33,7 +34,7 @@ class ChipsAllFragment : Fragment() {
         root.shirts_detail.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_chipsShirt)
         }
-
+        swipeRefresh()
         navigateBack(root.all_toolbar)
         displayCloths()
         return root
@@ -47,6 +48,22 @@ class ChipsAllFragment : Fragment() {
             root.chips_all_recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
 
+        }
+    }
+    private fun swipeRefresh(){
+        root.allSwipeRefresh.setOnRefreshListener {
+            root.allSwipeRefresh.isRefreshing = false
+            shuffleItems()
+        }
+    }
+
+    @Suppress("JavaCollectionsStaticMethodOnImmutableList")
+    private fun shuffleItems(){
+        viewModel.getMaleCloths {wears->
+            Collections.shuffle(wears, Random(System.currentTimeMillis()))
+            adapter = MaleClothsAdapter(wears)
+            root.chips_all_recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
         }
     }
 

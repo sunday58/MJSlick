@@ -14,6 +14,7 @@ import com.mjslick.R
 import com.mjslick.ui.adapters.MaleClothsAdapter
 import kotlinx.android.synthetic.main.chip_trouser_fragment.view.*
 import kotlinx.android.synthetic.main.fragment_chips_all.view.*
+import java.util.*
 
 class ChipTrouserFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class ChipTrouserFragment : Fragment() {
         root.shirtTrouserDetail.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_chipsShirt)
         }
-
+        swipeRefresh()
         displayCloths()
         navigateBack(root.trouser_toolbar)
         return root
@@ -50,6 +51,22 @@ class ChipTrouserFragment : Fragment() {
         }
     }
 
+    private fun swipeRefresh(){
+        root.trouserSwipeRefresh.setOnRefreshListener {
+            root.trouserSwipeRefresh.isRefreshing = false
+            shuffleItems()
+        }
+    }
+
+    @Suppress("JavaCollectionsStaticMethodOnImmutableList")
+    private fun shuffleItems(){
+        viewModel.getMaleTrousers {wears->
+            Collections.shuffle(wears, Random(System.currentTimeMillis()))
+            adapter = MaleClothsAdapter(wears)
+            root.chips_trouser_recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
+    }
     private fun navigateBack(toolbar: MaterialToolbar){
         toolbar.setNavigationOnClickListener {
             Navigation.findNavController(root).navigateUp()

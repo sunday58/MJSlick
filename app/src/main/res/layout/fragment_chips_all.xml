@@ -58,19 +58,27 @@
 
     </com.google.android.material.chip.ChipGroup>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chips_all_recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/allSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/chip_group"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/male_wear_list_item" />
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chips_all_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/male_wear_list_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </RelativeLayout>

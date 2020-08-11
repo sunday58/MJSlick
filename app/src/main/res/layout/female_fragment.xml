@@ -46,19 +46,26 @@
         android:hint="Search"
         android:padding="12dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/female_wear_recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/femaleClothSwipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/female_search_placeHolder"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:fitsSystemWindows="true"
-        android:layout_marginBottom="8dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/female_wear_list_item" />
+        android:layout_marginTop="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/female_wear_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fitsSystemWindows="true"
+            android:layout_marginBottom="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/female_wear_list_item" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_female_wear"
