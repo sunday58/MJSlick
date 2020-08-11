@@ -1,5 +1,6 @@
 package com.mjslick.ui.detail
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -154,6 +155,7 @@ class DetailClothFragment : Fragment() {
         sendEmail()
         openTwitter()
         openFacebook()
+        openLinkedin()
         return root
     }
 
@@ -214,6 +216,19 @@ class DetailClothFragment : Fragment() {
             }
         }catch (e: PackageManager.NameNotFoundException){
             return Constants.FACEBOOK_URL
+        }
+    }
+
+    private fun openLinkedin(){
+        root.detail_linkedin.setOnClickListener {
+            try {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(Constants.LINKEDIN_URL)
+                intent.setPackage("com.linkedin.android")
+                startActivity(intent)
+            }catch (e: ActivityNotFoundException){
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.LINKEDIN_URL)))
+            }
         }
     }
 }
