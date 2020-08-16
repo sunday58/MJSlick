@@ -163,7 +163,7 @@ class AddMaleClothFragment : Fragment() {
                 clothName, clothType, clothDescription,
                getString(R.string.currency_naira) + topPrice,
                 getString(R.string.currency_naira) + trouserPrice,
-                getString(R.string.currency_naira) + completePrice, imagePath
+                getString(R.string.currency_naira) + completePrice, imagePath, ""
             )
 
             if (TextUtils.isEmpty(clothName) || TextUtils.isEmpty(clothDescription)) {

@@ -127,6 +127,7 @@ class FirebaseSource {
         femaleCloth[Constants.TROUSER_PRICE] = item.trouserPrice
         femaleCloth[Constants.COMPLETE_PRICE] = item.completePrice
          femaleCloth[Constants.CLOTH_IMAGES] = item.clothImages
+         femaleCloth[Constants.KEY] = item.key
 
 
         val newFemaleCloth: Task<DocumentReference> =
@@ -135,7 +136,11 @@ class FirebaseSource {
                 .add(femaleCloth)
 
                newFemaleCloth.addOnSuccessListener {snapShort->
-                   Log.d("cloth Id", snapShort.id)
+                   currentUserDocRef
+                       .collection(Constants.FEMALE_CLOTH_COLLECTION)
+                       .document(snapShort.id)
+                       .update(Constants.KEY, snapShort.id)
+
                     Log.d("female Cloth", "Cloth added")
                 }.addOnFailureListener {
                     Log.d("female cloth", "failed to add female cloth")
@@ -153,6 +158,7 @@ class FirebaseSource {
         maleCloth[Constants.TROUSER_PRICE] = item.trouserPrice
         maleCloth[Constants.COMPLETE_PRICE] = item.completePrice
         maleCloth[Constants.CLOTH_IMAGES] = item.clothImages
+        maleCloth[Constants.KEY] = item.key
 
 
         val newMaleCloth: Task<DocumentReference> =
@@ -160,7 +166,11 @@ class FirebaseSource {
                 .collection(Constants.MALE_CLOTH_COLLECTION)
                 .add(maleCloth)
 
-        newMaleCloth.addOnSuccessListener {
+        newMaleCloth.addOnSuccessListener {snapShot ->
+            currentUserDocRef
+                .collection(Constants.MALE_CLOTH_COLLECTION)
+                .document(snapShot.id)
+                .update(Constants.KEY, snapShot.id)
             Log.d("male Cloth", "Cloth added")
         }.addOnFailureListener {
             Log.d("male cloth", "failed to add male cloth")

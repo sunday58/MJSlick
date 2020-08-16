@@ -9,8 +9,9 @@ data class MaleWear(
     val topPrice: String,
     val trouserPrice: String,
     val completePrice: String,
-    val clothImages: List<String>
+    val clothImages: List<String>,
+    val key: String
 ): Serializable {
     constructor(): this("", "", "", "",
-        "", "", listOf())
+        "", "", listOf(), "")
 }

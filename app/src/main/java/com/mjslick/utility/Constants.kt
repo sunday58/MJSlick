@@ -23,6 +23,7 @@ object Constants {
     const val TROUSER_PRICE = "trouserPrice"
     const val COMPLETE_PRICE = "completePrice"
     const val CLOTH_IMAGES = "clothImages"
+    const val KEY = "key"
 
     //phone number
     const val PHONE_NUMBER = "07060764670"
