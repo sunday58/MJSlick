@@ -40,4 +40,10 @@ class Repository(private val firebaseSource: FirebaseSource) {
     fun getMaleSearchCloths(name: String, myCallback: (List<MaleWear>) -> Unit) =
         firebaseSource.getMaleSearchCloths(name, myCallback)
 
+    fun deleteMaleCloth(key: String) =
+        firebaseSource.deleteMaleCloth(key)
+
+    fun deleteFemaleCloth(key: String) =
+        firebaseSource.deleteFemaleCloth(key)
+
 }

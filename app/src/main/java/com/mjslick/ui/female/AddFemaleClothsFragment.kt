@@ -172,7 +172,7 @@ class AddFemaleClothsFragment : Fragment() {
                clothName, clothType, clothDescription,
                getString(R.string.currency_naira) + topPrice,
                getString(R.string.currency_naira) + trouserPrice,
-               getString(R.string.currency_naira) + completePrice, imagePath, ""
+               getString(R.string.currency_naira) + completePrice, imagePath, "12345"
            )
 
            if (clothName.isEmpty() || clothDescription.isEmpty()) {

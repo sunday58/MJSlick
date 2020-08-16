@@ -8,10 +8,9 @@
     android:fillViewport="true"
     tools:context=".ui.profile.ProfileFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
             android:id="@+id/detail_image"
@@ -24,11 +23,23 @@
             app:siShape="@drawable/image_shape"
             android:src="@drawable/female_wear"/>
 
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_more"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="24dp"/>
+
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:cardElevation="8dp"
+            android:layout_below="@id/detail_image"
             android:layout_marginTop="12dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp">
@@ -78,10 +89,12 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:cardElevation="8dp"
+            android:layout_below="@id/card1"
             android:layout_marginTop="12dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp">
@@ -196,6 +209,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:cardElevation="8dp"
+            android:layout_below="@id/card2"
             app:cardBackgroundColor="@color/colorPrimary"
             android:layout_marginTop="12dp"
             android:layout_marginStart="24dp"
@@ -290,7 +304,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </androidx.core.widget.NestedScrollView>

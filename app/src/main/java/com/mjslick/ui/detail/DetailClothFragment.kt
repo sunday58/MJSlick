@@ -6,10 +6,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mjslick.R
@@ -24,6 +27,7 @@ class DetailClothFragment : Fragment() {
     private lateinit var root: View
     private lateinit var ladiesWear: LadiesWear
     private lateinit var maleWear: MaleWear
+    private lateinit var viewModel: DetailClothViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +35,7 @@ class DetailClothFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_detail_cloth, container, false)
+        viewModel = ViewModelProvider(this).get(DetailClothViewModel::class.java)
 
         if (arguments != null && requireArguments().containsKey("ladies")){
             ladiesWear = requireArguments().getSerializable("ladies") as LadiesWear
@@ -41,6 +46,8 @@ class DetailClothFragment : Fragment() {
             root.detail_top_price.text = ladiesWear.topPrice
             root.detail_trouser_price.text = ladiesWear.trouserPrice
             root.detail_complete_price.text = ladiesWear.completePrice
+
+            deleteFemaleCloth(ladiesWear.key)
 
             //check null contents
             when {
@@ -100,6 +107,8 @@ class DetailClothFragment : Fragment() {
             root.detail_top_price.text = maleWear.topPrice
             root.detail_trouser_price.text = maleWear.trouserPrice
             root.detail_complete_price.text = maleWear.completePrice
+
+            deleteMaleCloth(maleWear.key)
 
             //check null contents
             when {
@@ -228,6 +237,68 @@ class DetailClothFragment : Fragment() {
                 startActivity(intent)
             }catch (e: ActivityNotFoundException){
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.LINKEDIN_URL)))
+            }
+        }
+    }
+
+    private fun deleteMaleCloth(key: String){
+
+        root.delete.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), it)
+
+            popupMenu.setOnMenuItemClickListener {item ->
+                when(item.itemId) {
+                    R.id.menu_delete -> {
+                        viewModel.deleteMaleCloth(key)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.inflate(R.menu.admin_menu)
+
+            try {
+                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                fieldMPopup.isAccessible = true
+                val mPopup = fieldMPopup.get(popupMenu)
+                mPopup.javaClass
+                    .getDeclaredMethod("setForceShowIcon", Boolean::class.java )
+                    .invoke(mPopup, true)
+            }catch (e: Exception) {
+                Log.e("Menu", "Error showing menu icons.", e)
+            } finally {
+                popupMenu.show()
+            }
+        }
+    }
+
+    private fun deleteFemaleCloth(key: String){
+
+        root.delete.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), it)
+
+            popupMenu.setOnMenuItemClickListener {item ->
+                when(item.itemId) {
+                    R.id.menu_delete -> {
+                        viewModel.deleteFemaleCloth(key)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.inflate(R.menu.admin_menu)
+
+            try {
+                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                fieldMPopup.isAccessible = true
+                val mPopup = fieldMPopup.get(popupMenu)
+                mPopup.javaClass
+                    .getDeclaredMethod("setForceShowIcon", Boolean::class.java )
+                    .invoke(mPopup, true)
+            }catch (e: Exception) {
+                Log.e("Menu", "Error showing menu icons.", e)
+            } finally {
+                popupMenu.show()
             }
         }
     }

@@ -30,6 +30,7 @@ import com.mjslick.utility.Network
 import kotlinx.android.synthetic.main.fragment_add_male_cloth.view.*
 import java.io.ByteArrayOutputStream
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AddMaleClothFragment : Fragment() {
 
@@ -149,7 +150,7 @@ class AddMaleClothFragment : Fragment() {
         }
     }
 
-    private fun addMaleCloth(imagePath: List<String>) {
+    private fun addMaleCloth(imagePath: ArrayList<String>) {
         root.saveMaleCloths.setOnClickListener {
             if (Network.isOnline(requireContext())){
             val clothName = Objects.requireNonNull(root.male_cloth_name.text.toString())
@@ -163,7 +164,7 @@ class AddMaleClothFragment : Fragment() {
                 clothName, clothType, clothDescription,
                getString(R.string.currency_naira) + topPrice,
                 getString(R.string.currency_naira) + trouserPrice,
-                getString(R.string.currency_naira) + completePrice, imagePath, ""
+                getString(R.string.currency_naira) + completePrice, imagePath, "12345"
             )
 
             if (TextUtils.isEmpty(clothName) || TextUtils.isEmpty(clothDescription)) {

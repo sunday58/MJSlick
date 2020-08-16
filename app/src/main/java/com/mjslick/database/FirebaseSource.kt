@@ -13,6 +13,7 @@ import com.mjslick.model.LadiesWear
 import com.mjslick.model.MaleWear
 import com.mjslick.model.User
 import com.mjslick.utility.Constants
+import java.lang.String.valueOf
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -287,25 +288,25 @@ class FirebaseSource {
     }
 
     //delete items from database
-    fun deleteMaleCloth(){
+    fun deleteMaleCloth(key: String){
         currentUserDocRef
             .collection(Constants.MALE_CLOTH_COLLECTION)
-            .document()
+            .document(key)
             .delete()
             .addOnSuccessListener {
-                Log.d("Male cloth deleted", it.toString())
+                Log.d("Male cloth deleted", "Item deleted")
             }.addOnFailureListener {exception ->
                 Log.d("Male delete Failure", exception.message.toString())
             }
     }
 
-    fun deleteFemaleCloth(){
+    fun deleteFemaleCloth(key: String){
         currentUserDocRef
             .collection(Constants.FEMALE_CLOTH_COLLECTION)
-            .document()
+            .document(key)
             .delete()
             .addOnSuccessListener {
-                Log.d("female cloth deleted", it.toString())
+                Log.d("female cloth deleted", "Item deleted")
             }.addOnFailureListener {exception ->
                 Log.d("female delete Failure", exception.message.toString())
             }
@@ -325,7 +326,7 @@ class FirebaseSource {
             imageName.putBytes(individualImage)
                 .addOnSuccessListener {
                     imageName.downloadUrl.addOnSuccessListener {uri ->
-                        val url = java.lang.String.valueOf(uri)
+                        val url = valueOf(uri)
                         onSuccess(arrayListOf(url))
                     }
                 }
@@ -344,7 +345,7 @@ class FirebaseSource {
             imageName.putBytes(individualImage)
                 .addOnSuccessListener {
                     imageName.downloadUrl.addOnSuccessListener {uri ->
-                        val url = java.lang.String.valueOf(uri)
+                        val url = valueOf(uri)
                         onSuccess(arrayListOf(url))
                     }
                 }
