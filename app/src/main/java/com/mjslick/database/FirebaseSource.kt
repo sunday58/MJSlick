@@ -34,7 +34,7 @@ class FirebaseSource {
         get() = firestoreInstance.document(
             "users/MJSlick")
 
-    private val currentUserStorageRef: StorageReference
+        private val currentUserStorageRef: StorageReference
         get() = storageInstance.reference
             .child("MJSlick")
 
@@ -134,7 +134,8 @@ class FirebaseSource {
                 .collection(Constants.FEMALE_CLOTH_COLLECTION)
                 .add(femaleCloth)
 
-               newFemaleCloth.addOnSuccessListener {
+               newFemaleCloth.addOnSuccessListener {snapShort->
+                   Log.d("cloth Id", snapShort.id)
                     Log.d("female Cloth", "Cloth added")
                 }.addOnFailureListener {
                     Log.d("female cloth", "failed to add female cloth")
@@ -272,6 +273,31 @@ class FirebaseSource {
                     }
                     myCallback(list)
                 }
+            }
+    }
+
+    //delete items from database
+    fun deleteMaleCloth(){
+        currentUserDocRef
+            .collection(Constants.MALE_CLOTH_COLLECTION)
+            .document()
+            .delete()
+            .addOnSuccessListener {
+                Log.d("Male cloth deleted", it.toString())
+            }.addOnFailureListener {exception ->
+                Log.d("Male delete Failure", exception.message.toString())
+            }
+    }
+
+    fun deleteFemaleCloth(){
+        currentUserDocRef
+            .collection(Constants.FEMALE_CLOTH_COLLECTION)
+            .document()
+            .delete()
+            .addOnSuccessListener {
+                Log.d("female cloth deleted", it.toString())
+            }.addOnFailureListener {exception ->
+                Log.d("female delete Failure", exception.message.toString())
             }
     }
 
