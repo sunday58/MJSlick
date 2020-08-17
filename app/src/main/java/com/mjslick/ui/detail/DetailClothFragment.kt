@@ -254,90 +254,88 @@ class DetailClothFragment : Fragment() {
     private fun deleteMaleCloth(key: String){
 
         root.delete.setOnClickListener {
-            val dialog = MaterialAlertDialogBuilder(requireContext())
-            dialog.setTitle("Deleting?")
-            dialog.setIcon(R.drawable.ic_baseline_delete_forever_24)
-            dialog.setMessage("Are you sure you want to delete this item?")
-                .setPositiveButton(
-                    "YES"
-                ) { dialogInterface: DialogInterface, _: Int ->
-                    dialogInterface.dismiss()
-                    val popupMenu = PopupMenu(requireContext(), it)
-                    popupMenu.setOnMenuItemClickListener {item ->
-                        when(item.itemId) {
-                            R.id.menu_delete -> {
+            val popupMenu = PopupMenu(requireContext(), it)
+            popupMenu.setOnMenuItemClickListener {item ->
+                when(item.itemId) {
+                    R.id.menu_delete -> {
+                        val dialog = MaterialAlertDialogBuilder(requireContext())
+                        dialog.setTitle("Deleting?")
+                        dialog.setIcon(R.drawable.ic_baseline_delete_forever_24)
+                        dialog.setMessage("Are you sure you want to delete this item?")
+                            .setPositiveButton(
+                                "YES"
+                            ) { dialogInterface: DialogInterface, _: Int ->
+                                dialogInterface.dismiss()
                                 viewModel.deleteMaleCloth(key)
                                 Navigation.findNavController(root).navigate(R.id.navigation_male)
-                                true
                             }
-                            else -> false
-                        }
+                            .setNegativeButton(
+                                "NO"
+                            ) { dialogInterface: DialogInterface, _: Int -> dialogInterface.dismiss() }
+                        dialog.create().show()
+                        true
                     }
-                    popupMenu.inflate(R.menu.admin_menu)
-
-                    try {
-                        val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
-                        fieldMPopup.isAccessible = true
-                        val mPopup = fieldMPopup.get(popupMenu)
-                        mPopup.javaClass
-                            .getDeclaredMethod("setForceShowIcon", Boolean::class.java )
-                            .invoke(mPopup, true)
-                    }catch (e: Exception) {
-                        Log.e("Menu", "Error showing menu icons.", e)
-                    } finally {
-                        popupMenu.show()
-                    }
-
+                    else -> false
                 }
-                .setNegativeButton(
-                    "NO"
-                ) { dialogInterface: DialogInterface, _: Int -> dialogInterface.dismiss() }
-            dialog.create().show()
+            }
+            popupMenu.inflate(R.menu.admin_menu)
+
+            try {
+                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                fieldMPopup.isAccessible = true
+                val mPopup = fieldMPopup.get(popupMenu)
+                mPopup.javaClass
+                    .getDeclaredMethod("setForceShowIcon", Boolean::class.java )
+                    .invoke(mPopup, true)
+            }catch (e: Exception) {
+                Log.e("Menu", "Error showing menu icons.", e)
+            } finally {
+                popupMenu.show()
+            }
         }
     }
 
     private fun deleteFemaleCloth(key: String){
 
         root.delete.setOnClickListener {
-            val dialog = MaterialAlertDialogBuilder(requireContext())
-            dialog.setTitle("Deleting?")
-            dialog.setIcon(R.drawable.ic_close)
-            dialog.setMessage("Are you sure you want to delete this item?")
-                .setPositiveButton(
-                    "YES"
-                ) { dialogInterface: DialogInterface, _: Int ->
-                    dialogInterface.dismiss()
-                    val popupMenu = PopupMenu(requireContext(), it)
-                    popupMenu.setOnMenuItemClickListener {item ->
-                        when(item.itemId) {
-                            R.id.menu_delete -> {
+            val popupMenu = PopupMenu(requireContext(), it)
+            popupMenu.setOnMenuItemClickListener {item ->
+                when(item.itemId) {
+                    R.id.menu_delete -> {
+                        val dialog = MaterialAlertDialogBuilder(requireContext())
+                        dialog.setTitle("Deleting?")
+                        dialog.setIcon(R.drawable.ic_close)
+                        dialog.setMessage("Are you sure you want to delete this item?")
+                            .setPositiveButton(
+                                "YES"
+                            ) { dialogInterface: DialogInterface, _: Int ->
+                                dialogInterface.dismiss()
                                 viewModel.deleteFemaleCloth(key)
                                 Navigation.findNavController(root).navigate(R.id.navigation_female)
-                                true
                             }
-                            else -> false
-                        }
+                            .setNegativeButton(
+                                "NO"
+                            ) { dialogInterface: DialogInterface, _: Int -> dialogInterface.dismiss() }
+                        dialog.create().show()
+                        true
                     }
-                    popupMenu.inflate(R.menu.admin_menu)
-
-                    try {
-                        val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
-                        fieldMPopup.isAccessible = true
-                        val mPopup = fieldMPopup.get(popupMenu)
-                        mPopup.javaClass
-                            .getDeclaredMethod("setForceShowIcon", Boolean::class.java )
-                            .invoke(mPopup, true)
-                    }catch (e: Exception) {
-                        Log.e("Menu", "Error showing menu icons.", e)
-                    } finally {
-                        popupMenu.show()
-                    }
-
+                    else -> false
                 }
-                .setNegativeButton(
-                    "NO"
-                ) { dialogInterface: DialogInterface, _: Int -> dialogInterface.dismiss() }
-            dialog.create().show()
+            }
+            popupMenu.inflate(R.menu.admin_menu)
+
+            try {
+                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                fieldMPopup.isAccessible = true
+                val mPopup = fieldMPopup.get(popupMenu)
+                mPopup.javaClass
+                    .getDeclaredMethod("setForceShowIcon", Boolean::class.java )
+                    .invoke(mPopup, true)
+            }catch (e: Exception) {
+                Log.e("Menu", "Error showing menu icons.", e)
+            } finally {
+                popupMenu.show()
+            }
         }
     }
 }
