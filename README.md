@@ -11,6 +11,7 @@ There are hundreds of designs to choose from.
 
 ## SDK REQUIREMENTS
 *Minimum SDK Requirement - android API 19 (KitKat)
+
 *Target SDK - android API 29 (Android 10)
 
 ## INSTALLATION
@@ -21,6 +22,8 @@ SUNDAY DAVID
 
 [linkedin](https://www.linkedin.com/in/sunday-david-b556b9183/)
 
-##### feel free to check the repo and add contributions :+1
+
+
+feel free to check the repo and add contributions :+1:
 
 
