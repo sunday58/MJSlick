@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -268,6 +269,8 @@ class DetailClothFragment : Fragment() {
                                 dialogInterface.dismiss()
                                 viewModel.deleteMaleCloth(key)
                                 Navigation.findNavController(root).navigate(R.id.navigation_male)
+                                Toast.makeText(requireContext(), "Item deleted", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                             .setNegativeButton(
                                 "NO"
@@ -312,6 +315,8 @@ class DetailClothFragment : Fragment() {
                                 dialogInterface.dismiss()
                                 viewModel.deleteFemaleCloth(key)
                                 Navigation.findNavController(root).navigate(R.id.navigation_female)
+                                Toast.makeText(requireContext(), "Item deleted", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                             .setNegativeButton(
                                 "NO"
