@@ -8,7 +8,7 @@ There are hundreds of designs to choose from.
 ![github3](https://user-images.githubusercontent.com/46400048/90388137-41585d80-e07f-11ea-83bb-e756031f29e6.png)
 ![github4](https://user-images.githubusercontent.com/46400048/90388138-42898a80-e07f-11ea-9c90-39ce90b136a7.png)
 
-#SDK REQUIREMENTS
+# SDK REQUIREMENTS
 minSdkVersion 19
 targetSdkVersion 29
 
