@@ -40,6 +40,13 @@ class DetailClothFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_detail_cloth, container, false)
         viewModel = ViewModelProvider(this).get(DetailClothViewModel::class.java)
 
+        //check admin
+        if (viewModel.currentUser() != null){
+            root.delete.visibility = View.VISIBLE
+        }else {
+            root.delete.visibility = View.GONE
+        }
+
         if (arguments != null && requireArguments().containsKey("ladies")){
             ladiesWear = requireArguments().getSerializable("ladies") as LadiesWear
 

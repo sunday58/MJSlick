@@ -18,4 +18,6 @@ class DetailClothViewModel: ViewModel() {
 
     fun deleteFemaleCloth(key: String) =
         repository.deleteFemaleCloth(key)
+
+    fun currentUser() = repository.currentUser()
 }
