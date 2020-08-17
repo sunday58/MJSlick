@@ -50,7 +50,6 @@ class AddMaleClothFragment : Fragment() {
         val viewModelFactory = AddMaleClothFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(AddMaleClothViewModel::class.java)
 
-
         root.maleSelectPicture.setOnClickListener {
             clearImage()
             if (!permissionIfNeeded()) {

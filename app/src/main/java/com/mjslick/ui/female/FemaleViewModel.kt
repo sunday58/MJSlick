@@ -17,4 +17,6 @@ class FemaleViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun getFemaleCloths(myCallback: (List<LadiesWear>) -> Unit) = repository.getFemaleCloths(myCallback)
+
+    fun currentUser() = repository.currentUser()
 }

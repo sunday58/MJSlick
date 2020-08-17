@@ -21,4 +21,5 @@ class AddMaleClothViewModel(application: Application): AndroidViewModel(applicat
     fun uploadMaleClothImage(imageBytes: List<ByteArray>,
                                onSuccess: (imagePath: ArrayList<String>) -> Unit)
             = repository.uploadMaleClothImage(imageBytes, onSuccess)
+
 }

@@ -33,8 +33,14 @@ class MaleFragment : Fragment() {
         val viewModelFactory = GetMaleClothFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MaleViewModel::class.java)
 
-        root.add_male_wear.setOnClickListener {
-            Navigation.findNavController(root).navigate(R.id.navigation_addMaleCloth)
+        //check admin
+        if (viewModel.currentUser() != null){
+            root.add_male_wear.visibility = View.VISIBLE
+            root.add_male_wear.setOnClickListener {
+                Navigation.findNavController(root).navigate(R.id.navigation_addMaleCloth)
+            }
+        }else {
+            root.add_male_wear.visibility = View.GONE
         }
         root.male_search_placeHolder.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_maleSearch)

@@ -34,9 +34,16 @@ class FemaleFragment : Fragment() {
         val viewModelFactory = GetFemaleClothFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(FemaleViewModel::class.java)
 
-        root.add_female_wear.setOnClickListener {
-            Navigation.findNavController(root).navigate(R.id.navigation_addFemaleCloth)
+        //check admin
+        if (viewModel.currentUser() != null){
+            root.add_female_wear.visibility = View.VISIBLE
+            root.add_female_wear.setOnClickListener {
+                Navigation.findNavController(root).navigate(R.id.navigation_addFemaleCloth)
+            }
+        }else {
+            root.add_female_wear.visibility = View.GONE
         }
+
         root.female_search_placeHolder.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.navigation_femaleSearch)
         }
