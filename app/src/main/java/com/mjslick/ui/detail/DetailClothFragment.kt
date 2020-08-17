@@ -267,6 +267,7 @@ class DetailClothFragment : Fragment() {
                         when(item.itemId) {
                             R.id.menu_delete -> {
                                 viewModel.deleteMaleCloth(key)
+                                Navigation.findNavController(root).navigate(R.id.navigation_male)
                                 true
                             }
                             else -> false
@@ -311,6 +312,7 @@ class DetailClothFragment : Fragment() {
                         when(item.itemId) {
                             R.id.menu_delete -> {
                                 viewModel.deleteFemaleCloth(key)
+                                Navigation.findNavController(root).navigate(R.id.navigation_female)
                                 true
                             }
                             else -> false
