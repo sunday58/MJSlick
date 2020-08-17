@@ -10,6 +10,10 @@ There are hundreds of designs to choose from.
 
 # SDK REQUIREMENTS
 Minimum SDK Requirement - android API 19 (KitKat)
+
 Target SDK - android API 29 (Android 10)
+
+# INSTALLATION
+Download the application from play store (Link coming soon)
 
 
