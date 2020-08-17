@@ -189,30 +189,6 @@
                 android:layout_marginStart="16dp"
                 android:scaleType="centerCrop"/>
 
-            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-                android:id="@+id/shirtImage3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:siShape="@drawable/shirt_image_shape"
-                app:siSquare="true"
-                android:layout_below="@id/shirtImage2"
-                android:layout_marginTop="16dp"
-                android:visibility="gone"
-                android:scaleType="centerCrop"/>
-
-            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-                android:id="@+id/shirtImage4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:siShape="@drawable/shirt_image_shape"
-                app:siSquare="true"
-                android:layout_toEndOf="@id/shirtImage3"
-                android:layout_below="@id/shirtImage2"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:visibility="gone"
-                android:scaleType="centerCrop"/>
-
         </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton

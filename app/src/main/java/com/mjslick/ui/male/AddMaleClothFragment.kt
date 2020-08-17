@@ -88,29 +88,23 @@ class AddMaleClothFragment : Fragment() {
                             .getBitmap(activity?.contentResolver, imageUri)
 
                         val outputStream = ByteArrayOutputStream()
-                        selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+                        selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 60, outputStream)
                         selectedImageBytes = outputStream.toByteArray()
 
-                        if (i == 0) {
-                            loadImage(selectedImageBytes,root.maleShirtImage1)
-                            root.maleShirtImage1.visibility = View.VISIBLE
-                        }
-                        if (i == 1) {
-                            loadImage(selectedImageBytes, root.maleShirtImage2)
-                            root.maleShirtImage2.visibility = View.VISIBLE
-                        }
-                        if (i == 2) {
-                            loadImage(selectedImageBytes, root.maleShirtImage3)
-                            root.maleShirtImage3.visibility = View.VISIBLE
-                        }
-                        if (i == 3) {
-                            loadImage(selectedImageBytes, root.maleShirtImage4)
-                            root.maleShirtImage4.visibility = View.VISIBLE
-                        }
-                        if (i == 4) {
-                            Toast.makeText(requireContext(), "Can't select more than 4 item, try again",
-                                Toast.LENGTH_LONG).show()
-                            clearImage()
+                        when (i) {
+                           0 -> {
+                               loadImage(selectedImageBytes, root.maleShirtImage1)
+                               root.maleShirtImage1.visibility = View.VISIBLE
+                           }
+                          1 -> {
+                              loadImage(selectedImageBytes, root.maleShirtImage2)
+                              root.maleShirtImage2.visibility = View.VISIBLE
+                          }
+                         else -> {
+                             Toast.makeText(requireContext(), "Can't select more than 2 item, try again",
+                                 Toast.LENGTH_LONG).show()
+                             clearImage()
+                         }
                         }
                         val clothsImages = listOf(selectedImageBytes)
                         if (root.maleShirtImage1 != null){
@@ -195,12 +189,8 @@ class AddMaleClothFragment : Fragment() {
     private fun clearImage(){
         root.maleShirtImage1.setImageResource(android.R.color.transparent)
         root.maleShirtImage2.setImageResource(android.R.color.transparent)
-        root.maleShirtImage3.setImageResource(android.R.color.transparent)
-        root.maleShirtImage4.setImageResource(android.R.color.transparent)
         root.maleShirtImage1.visibility = View.GONE
         root.maleShirtImage2.visibility = View.GONE
-        root.maleShirtImage3.visibility = View.GONE
-        root.maleShirtImage4.visibility = View.GONE
     }
 
     private fun permissionIfNeeded(): Boolean {

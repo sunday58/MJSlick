@@ -102,15 +102,8 @@ class AddFemaleClothsFragment : Fragment() {
                                       loadImage(selectedImageBytes, root.shirtImage2)
                                       root.shirtImage2.visibility = View.VISIBLE
                                   }
-                                  2 -> {
-                                      loadImage(selectedImageBytes, root.shirtImage3)
-                                      root.shirtImage3.visibility = View.VISIBLE
-                                  }
-                                  3 -> {
-                                      loadImage(selectedImageBytes, root.shirtImage4)
-                                      root.shirtImage4.visibility = View.VISIBLE
-                                  }  else -> {
-                                    Toast.makeText(requireContext(), "Can't select more than 4 item, try again",
+                                   else -> {
+                                    Toast.makeText(requireContext(), "Can't select more than 2 item, try again",
                                         Toast.LENGTH_LONG).show()
                                     clearImage()
                                 }
@@ -204,12 +197,8 @@ class AddFemaleClothsFragment : Fragment() {
     private fun clearImage(){
         root.shirtImage1.setImageResource(android.R.color.transparent)
         root.shirtImage2.setImageResource(android.R.color.transparent)
-        root.shirtImage3.setImageResource(android.R.color.transparent)
-        root.shirtImage4.setImageResource(android.R.color.transparent)
         root.shirtImage1.visibility = View.GONE
         root.shirtImage2.visibility = View.GONE
-        root.shirtImage3.visibility = View.GONE
-        root.shirtImage4.visibility = View.GONE
     }
 
     private fun permissionIfNeeded(): Boolean {
