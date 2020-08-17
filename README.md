@@ -10,6 +10,7 @@ There are hundreds of designs to choose from.
 
 # SDK REQUIREMENTS
 minSdkVersion 19
+
 targetSdkVersion 29
 
 
