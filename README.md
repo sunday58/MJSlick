@@ -1,6 +1,7 @@
 # MJSlick
-MJSlick official mobile app
-
+The official app of MjSlick, a fashion design company specialized on making
+different types of Africa clothings for both males and females. 
+There are hundreds of designs to choose from.
 
 ![github1](https://user-images.githubusercontent.com/46400048/90388129-3e5d6d00-e07f-11ea-9865-306cdf397709.png)
 ![github2](https://user-images.githubusercontent.com/46400048/90388136-40bfc700-e07f-11ea-96b9-7142a2a42508.png)
