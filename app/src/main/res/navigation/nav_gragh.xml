@@ -7,91 +7,91 @@
 
     <fragment
         android:id="@+id/navigation_male"
-        android:name="com.mjslick.ui.male.MaleFragment"
+        android:name="com.gwc.ui.male.MaleFragment"
         android:label=""
         tools:layout="@layout/male_fragment"/>
 
     <fragment
         android:id="@+id/navigation_female"
-        android:name="com.mjslick.ui.female.FemaleFragment"
+        android:name="com.gwc.ui.female.FemaleFragment"
         android:label=""
         tools:layout="@layout/female_fragment"/>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.mjslick.ui.profile.ProfileFragment"
+        android:name="com.gwc.ui.profile.ProfileFragment"
         android:label=""
         tools:layout="@layout/profile_fragment"/>
 
     <fragment
         android:id="@+id/navigation_onBoarding"
-        android:name="com.mjslick.onboarding.OnBoardingFragment"
+        android:name="com.gwc.onboarding.OnBoardingFragment"
         android:label=""
         tools:layout="@layout/onboarding_fragment"/>
 
     <fragment
         android:id="@+id/navigation_logIn"
-        android:name="com.mjslick.ui.auth.logIn.LogInFragment"
+        android:name="com.gwc.ui.auth.logIn.LogInFragment"
         android:label=""
         tools:layout="@layout/log_in_fragment"/>
 
     <fragment
         android:id="@+id/navigation_register"
-        android:name="com.mjslick.ui.auth.register.RegisterFragment"
+        android:name="com.gwc.ui.auth.register.RegisterFragment"
         android:label=""
         tools:layout="@layout/register_fragment"/>
 
     <fragment
         android:id="@+id/navigation_addFemaleCloth"
-        android:name="com.mjslick.ui.female.AddFemaleClothsFragment"
+        android:name="com.gwc.ui.female.AddFemaleClothsFragment"
         android:label=""
         tools:layout="@layout/fragment_add_female_cloths"/>
 
     <fragment
         android:id="@+id/navigation_addMaleCloth"
-        android:name="com.mjslick.ui.male.AddMaleClothFragment"
+        android:name="com.gwc.ui.male.AddMaleClothFragment"
         android:label=""
         tools:layout="@layout/fragment_add_male_cloth"/>
 
     <fragment
         android:id="@+id/navigation_detail"
-        android:name="com.mjslick.ui.detail.DetailClothFragment"
+        android:name="com.gwc.ui.detail.DetailClothFragment"
         android:label=""
         tools:layout="@layout/fragment_detail_cloth"/>
 
     <fragment
         android:id="@+id/navigation_zoom"
-        android:name="com.mjslick.ui.detail.ZoomImageFragment"
+        android:name="com.gwc.ui.detail.ZoomImageFragment"
         android:label=""
         tools:layout="@layout/fragment_zoom_image"/>
 
     <fragment
         android:id="@+id/navigation_chipsAll"
-        android:name="com.mjslick.ui.chips.all.ChipsAllFragment"
+        android:name="com.gwc.ui.chips.all.ChipsAllFragment"
         android:label=""
         tools:layout="@layout/fragment_chips_all"/>
 
     <fragment
         android:id="@+id/navigation_chipsTrouser"
-        android:name="com.mjslick.ui.chips.trouser.ChipTrouserFragment"
+        android:name="com.gwc.ui.chips.trouser.ChipTrouserFragment"
         android:label=""
         tools:layout="@layout/chip_trouser_fragment"/>
 
     <fragment
         android:id="@+id/navigation_chipsShirt"
-        android:name="com.mjslick.ui.chips.shirt.ChipShirtFragment"
+        android:name="com.gwc.ui.chips.shirt.ChipShirtFragment"
         android:label=""
         tools:layout="@layout/chip_shirt_fragment"/>
 
     <fragment
         android:id="@+id/navigation_femaleSearch"
-        android:name="com.mjslick.ui.search.FemaleSearchFragment"
+        android:name="com.gwc.ui.search.FemaleSearchFragment"
         android:label=""
         tools:layout="@layout/female_search_fragment"/>
 
     <fragment
         android:id="@+id/navigation_maleSearch"
-        android:name="com.mjslick.ui.search.MaleSearchFragment"
+        android:name="com.gwc.ui.search.MaleSearchFragment"
         android:label=""
         tools:layout="@layout/male_search_fragment"/>
 

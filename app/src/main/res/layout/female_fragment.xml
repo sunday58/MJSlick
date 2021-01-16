@@ -19,7 +19,7 @@
         android:textStyle="bold"
         tools:ignore="RelativeOverlap" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -41,9 +41,9 @@
         android:clickable="false"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="8dp"
-        android:drawableTint="@color/gray"
+        app:drawableTint="@color/gray"
         android:focusable="false"
-        android:hint="Search"
+        android:hint="@string/search"
         android:padding="12dp" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

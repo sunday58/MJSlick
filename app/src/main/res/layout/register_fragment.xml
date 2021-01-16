@@ -38,7 +38,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:elevation="8dp"
+                app:elevation="8dp"
                 android:hint="Email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -63,7 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 app:passwordToggleEnabled="true"
-                android:elevation="8dp"
+                app:elevation="8dp"
                 android:hint="Password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -88,7 +88,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:elevation="8dp"
+                app:elevation="8dp"
                 android:hint="Phone No."
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -100,7 +100,7 @@
                     android:layout_gravity="center"
                     android:inputType="phone"
                     android:drawableStart="@drawable/ic_call"
-                    android:drawableTint="@color/black"
+                    app:drawableTint="@color/black"
                     android:textCursorDrawable="@null"
                     android:drawablePadding="12dp"/>
 
@@ -113,7 +113,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:elevation="8dp"
+                app:elevation="8dp"
                 android:hint="Twitter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -137,7 +137,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:elevation="8dp"
+                app:elevation="8dp"
                 android:hint="Facebook"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -161,7 +161,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:elevation="8dp"
+                app:elevation="8dp"
                 android:hint="Linkedin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -183,9 +183,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:text="Register"
-                app:backgroundTint="@color/colorPrimary"
-                android:textColor="@color/white"
+                android:text="@string/register"
+                app:backgroundTint="@color/white"
+                android:textColor="@color/colorPrimaryDark"
                 app:cornerRadius="45dp"
                 android:fontFamily="@font/roboto"
                 android:layout_gravity="center"

@@ -43,12 +43,12 @@
         android:src="@drawable/ic_dress"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"
-        app:backgroundTint="@color/colorPrimary"
-        app:tint="@color/white"
+        app:backgroundTint="@color/gray"
+        app:tint="@color/colorPrimaryDark"
         android:clickable="true"
         android:focusable="true"/>
 
-    <com.mjslick.utility.CustomBottomNavigationView1
+    <com.gwc.utility.CustomBottomNavigationView1
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
         android:layout_height="58dp"

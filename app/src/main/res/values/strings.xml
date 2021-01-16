@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MJSlick</string>
+    <string name="app_name">GWC COUTURE</string>
 
     <string name="indicator">indicator</string>
 
@@ -20,7 +20,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_me"><u>ABOUT ME</u></string>
-    <string name="about_me_detail">My name is Mary Joshua, the founder of MJSlick fashion design. Fashion have always been my passion and i decided to extend it to a carrier. I design and sew any type of male/female wears ranging from ankara, native etc.</string>
+    <string name="about_me_detail">My name is Godswill Cosmos, the operational director of GWC COUTURE,
+        a brand that is poised to delivering quality male and female attires. I make unisex designers shirts, senator wears,
+    agbada, danshiki, suits, ties and male cloth accessories. I also design for special occasions.</string>
     <string name="contact_me"><u>CONTACT ME</u></string>
     <string name="female_native_wear">Female Native Wear</string>
     <string name="price_is_negotiable">Price is Negotiable</string>
@@ -29,6 +31,14 @@
     <string name="linkedin_logo">linkedin logo</string>
     <string name="price"><u>PRICE</u></string>
     <string name="currency_naira">\u20A6</string>
+    <string name="all">All</string>
+    <string name="trousers">Trousers</string>
+    <string name="shirts">Shirts</string>
+    <string name="search">Search</string>
+    <string name="my_email">+2348180340255, +2348060115551</string>
+    <string name="my_phone">godswillcosmos86@gmail.com</string>
+    <string name="brand_name">GWC COUTURE</string>
+    <string name="register">Register</string>
 
     <string-array name="cloths">
         <item>Shirt</item>

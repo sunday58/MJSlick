@@ -21,14 +21,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:layout_below="@id/shirt_toolbar"
-        android:paddingStart="24dp">
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/all_shirt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="All"
+            android:text="@string/all"
             app:chipCornerRadius="45dp"
             app:chipEndPadding="12dp"
             app:chipStartPadding="12dp" />
@@ -38,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Trousers"
+            android:text="@string/trousers"
             app:chipCornerRadius="45dp"
             app:chipEndPadding="8dp"
             app:chipStartPadding="8dp" />
@@ -48,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Shirts"
+            android:text="@string/shirts"
             app:chipBackgroundColor="@color/colorPrimary"
             app:chipIconEnabled="true"
             android:textColor="@color/white"
