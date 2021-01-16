@@ -23,15 +23,16 @@
             app:siShape="@drawable/image_shape"
             android:src="@drawable/female_wear"/>
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/colorPrimaryDark"
+            app:tint="@color/white"
+            app:backgroundTint="@color/colorPrimaryDark"
             android:src="@drawable/ic_more"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="24dp"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="16dp"/>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card1"
@@ -304,7 +305,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-    </RelativeLayout>
 
+    </RelativeLayout>
 
 </androidx.core.widget.NestedScrollView>
