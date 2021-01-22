@@ -30,12 +30,14 @@ object Constants {
     //email
     const val EMAIL_ADDRESS = "godswillcosmos86@gmail.com"
     //for facebook
-    const val FACEBOOK_URL = "https://www.facebook.com/sustain.env.39"
-    const val FACEBOOK_PAGE_ID = "100047592309213"
+    //https://www.facebook.com/GWC-Couture-102687424946234/
+    const val FACEBOOK_URL = "https://www.facebook.com/GWC-Couture-102687424946234/"
+    const val FACEBOOK_PAGE_ID = "102687424946234"
     //for twitter
     const val TWITTER_URL = "twitter://user?screen_name=sustain_our"
     const val TWITTER_WEB_URL ="https://twitter.com/#!/sustain_our"
     //Linkedin
-    const val LINKEDIN_URL = "https://www.linkedin.com/company-beta/{linkedin_page_numerical_id}"
+    //https://www.linkedin.com/in/godswill-cosmos-b35359204
+    const val LINKEDIN_URL = "https://www.linkedin.com/in/godswill-cosmos-b35359204"
     const val PLAYSTORE_ACCOUNT = "https://play.google.com/store/apps/details?id=com.project.ksih_android"
 }
